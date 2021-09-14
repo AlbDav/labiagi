@@ -10,20 +10,20 @@ class obstacleDetection:
         self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
 
     def callback(self, msg):
-        print(msg)
+        # print(msg)
         for i, val in enumerate(msg.ranges, start=0):
             angle = msg.angle_min + (i * msg.angle_increment)
             x = val * math.cos(angle)
             y = val * math.sin(angle)
-            print(x, y, angle, val)
+            # print(x, y, angle, val)
             if(val > 10):
                 continue
             # print(i, val)
         time.sleep(120)
 
 def main():
+    rospy.init_node('obstacle_detection', anonymous=True)
     od = obstacleDetection()
-    rospy.init_node('obstacle_avoidance', anonymous=True)
     try:
         rospy.spin()
     except KeyboardInterrupt:
