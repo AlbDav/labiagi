@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="collision_avoidance" type="scan.py" name="scan_values" output="screen">
+    </node>
+</launch>
