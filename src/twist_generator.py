@@ -9,7 +9,6 @@ class twistGenerator:
     def __init__(self):
         self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
         self.move()
-        print('qui')
     
     def move(self):
         vel_msg = Twist()
