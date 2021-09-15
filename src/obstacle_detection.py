@@ -4,10 +4,14 @@ import rospy
 from sensor_msgs.msg import LaserScan
 import time
 import math
+from classes.Force import Force
 
 class obstacleDetection:
     def __init__(self):
         self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
+        force = Force(12, 4)
+        print(force.magnitude)
+        print(force.angle)
 
     def callback(self, msg):
         # print(msg)
