@@ -1,4 +1,4 @@
 <launch>
-    <node pkg="collision_avoidance" type="scan.py" name="scan_values" output="screen">
-    </node>
+    <node pkg="collision_avoidance" type="obstacle_detection.py" name="obstacle_detection" output="screen"/>
+    <node pkg="collision_avoidance" type="twist_generator.py" name="twist_generator" output="screen"/>
 </launch>
