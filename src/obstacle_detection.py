@@ -9,9 +9,7 @@ from collision_avoidance.srv import ForceResponse
 class obstacleDetection:
     def __init__(self):
         self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
-        force = ForceResponse()
-        force.magnitude = 3
-        force.angle = 2
+        force = ForceResponse(3,2)
         print(force.magnitude)
         print(force.angle)
 
