@@ -4,7 +4,7 @@ import rospy
 from sensor_msgs.msg import LaserScan
 import time
 import math
-from collision_avoidance.srv import ForceResponse
+from collision_avoidance.srv import Force, ForceResponse
 from visualization_msgs.msg import Marker
 from geometry_msgs.msg import Pose
 from tf.transformations import quaternion_from_euler
@@ -13,17 +13,17 @@ class obstacleDetection:
     def __init__(self):
         self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
         self.pub = rospy.Publisher('marker', Marker, queue_size=10)
+        self.srv = rospy.Service('force_service', Force, self.force_service)
         self.force = ForceResponse(0, 0)
 
     def callback(self, msg):
         self.force = ForceResponse(0, 0)
         for i, val in enumerate(msg.ranges, start=0):
             magnitude = 1 / (val*10)
-            angle = msg.angle_min + (i * msg.angle_increment) + math.pi
+            angle = msg.angle_min + (i * msg.angle_increment)
             force = ForceResponse(magnitude, angle)
             self.set_net_force(force)
         self.show_force()
-        print(self.force)
     
     def set_net_force(self, force):
         x1 = self.force.magnitude * math.cos(self.force.angle)
@@ -52,7 +52,7 @@ class obstacleDetection:
         self.marker.pose.orientation.y = q[1]
         self.marker.pose.orientation.z = q[2]
         self.marker.pose.orientation.w = q[3]
-        self.marker.scale.x = self.force.magnitude
+        self.marker.scale.x = -0.1 * self.force.magnitude
         self.marker.scale.y = 0.05
         self.marker.scale.z = 0.05
 
@@ -64,6 +64,9 @@ class obstacleDetection:
         self.marker.lifetime = rospy.Duration(0)
 
         self.pub.publish(self.marker)
+
+    def force_service(self, request):
+        return self.force
 
 def main():
     rospy.init_node('obstacle_detection', anonymous=True)
