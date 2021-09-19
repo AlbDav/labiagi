@@ -19,8 +19,13 @@ class obstacleDetection:
     def callback(self, msg):
         self.force = ForceResponse(0, 0)
         for i, val in enumerate(msg.ranges, start=0):
-            magnitude = 1 / (val*10)
-            angle = msg.angle_min + (i * msg.angle_increment)
+            if val >= 1.25:
+                continue
+            magnitude = 1 / val
+            temp_angle = msg.angle_min + (i * msg.angle_increment)
+            x = magnitude * math.cos(temp_angle)
+            y = magnitude * math.sin(temp_angle)
+            angle = math.atan2(-y, -x)
             force = ForceResponse(magnitude, angle)
             self.set_net_force(force)
         self.show_force()
@@ -33,7 +38,7 @@ class obstacleDetection:
         x_total = x1 + x2
         y_total = y1 + y2
         total_magnitude = math.sqrt(x_total ** 2 +  y_total ** 2)
-        total_angle = math.atan2(x_total, y_total)
+        total_angle = math.atan2(y_total, x_total)
         self.force = ForceResponse(total_magnitude, total_angle)
 
     def show_force(self):
@@ -52,7 +57,7 @@ class obstacleDetection:
         self.marker.pose.orientation.y = q[1]
         self.marker.pose.orientation.z = q[2]
         self.marker.pose.orientation.w = q[3]
-        self.marker.scale.x = -0.1 * self.force.magnitude
+        self.marker.scale.x = self.force.magnitude
         self.marker.scale.y = 0.05
         self.marker.scale.z = 0.05
 

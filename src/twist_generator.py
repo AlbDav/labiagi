@@ -20,10 +20,9 @@ class twistGenerator:
         vel_msg.angular.z = -5 + random() * 10
         self.pub.publish(vel_msg)
         vel_msg.angular.z = 0
-        #while not rospy.is_shutdown():
-        #    vel_msg.linear.x = random() * 100
-        #    self.pub.publish(vel_msg)
-        #    sleep(1)
+        while not rospy.is_shutdown():
+            vel_msg.linear.x = random() * 10
+            self.pub.publish(vel_msg)
 
 
 def main():
