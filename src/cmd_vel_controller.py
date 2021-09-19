@@ -5,6 +5,7 @@ from geometry_msgs.msg import Twist
 from random import random
 from time import sleep
 from collision_avoidance.srv import Force, ForceResponse
+import math
 
 class cmdVelController:
     def __init__(self):
@@ -19,7 +20,7 @@ class cmdVelController:
             print(force)
             print(msg)
             vel_msg = Twist()
-            vel_msg.linear.x = msg.linear.x - (0.1 * force.magnitude)
+            vel_msg.linear.x = msg.linear.x + (0.05 * force.magnitude)
             vel_msg.linear.y = 0
             vel_msg.linear.z = 0
             vel_msg.angular.x = 0
