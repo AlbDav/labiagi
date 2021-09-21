@@ -13,14 +13,16 @@ class cmdVelController:
         self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
     
     def callback(self, msg):
+        if msg.linear.x == 0:
+            self.pub.publish(msg)
+            return
         rospy.wait_for_service('force_service')
         try:
             force_service = rospy.ServiceProxy('force_service', Force)
             force = force_service()
-            print(force)
-            print(msg)
             vel_msg = Twist()
-            vel_msg.linear.x = msg.linear.x + (0.05 * force.magnitude)
+            x_linear = msg.linear.x + force.magnitude
+            vel_msg.linear.x = x_linear if x_linear < 0.75 else 0.75
             vel_msg.linear.y = 0
             vel_msg.linear.z = 0
             vel_msg.angular.x = 0
