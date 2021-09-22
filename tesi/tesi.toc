@@ -1,0 +1,4 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\contentsline {chapter}{\numberline {1}metti il titolo del capitolo}{9}{chapter.1}%
+\contentsline {section}{\numberline {1.1}se serve metti il titolo del paragrafo}{9}{section.1.1}%
