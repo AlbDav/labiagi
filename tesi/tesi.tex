@@ -7,34 +7,40 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\hypersetup{pdftitle={metti il titolo della tesi},pdfauthor={Davide Albano}}
+\hypersetup{pdftitle={Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field},pdfauthor={Davide Albano}}
+\setlength{\parindent}{1.25em}
+\setlength{\parskip}{0.75em}
 
-\title{rimetti il titolo}
+\title{Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field}
 \author{Davide Albano}
-\IDnumber{metti la matricola}
+\IDnumber{1708530}
 \course{Ingegneria Informatica e Automatica}
-\courseorganizer{Facoltà di ..}
+\courseorganizer{Facoltà di Ingegneria dell'Informazione, Informatica e Statistica}
 \AcademicYear{2020/2021}
 \copyyear{2021}
 \advisor{Prof. Giorgio Grisetti}
-\authoremail{metti la tua email}
+\authoremail{albano.1708530@studenti.uniroma1.it}
 
 \examdate{ }
 \examiner{ }
 \versiondate{ } %queste tre righe non serve che le compili poi quando vai a stampare fai togliere questa parte perchè non si può cancellare sennò non parte il file
-
 \begin{document}
 \maketitle
-\dedication{scrivi qui la dedica se la vuoi senno togli la riga del comando}
 \begin{abstract}
-scrivi qui il sommario se serve
+L'obbiettivo di questo lavoro è l'implementazionie di un sistema che permetta a un robot di muoversi all'interno di un ambiente evitando eventuali ostacoli.
+Il robot preso in considerazione non conosce l'ambiente in cui dovrà muoversi e può quindi basarsi soltanto sulle rilevazioni fatte tramite in laser scanner.
+
+Per l'implementazione è stato usato ROS (Robot Operating System) un framework open source usato per gestire le operazioni e le cominucazioni dei vari nodi di un robot.
+Per la simulazione è stato usato il pacchetto stage\_ros, mentre per la visualizzazione delle informazioni sulla traiettoria calcolate dal robot è stato usato il tool RVIZ.
+
+Data l'assenza di informazioni iniziali riguardo alla mappa è stata necessario scegliere un algoritmo di local motion planning.
+In particolare è stato scelto il metodo dell'Artificial Potential Field, che è spesso usato per la sua semplicità sia dal punto di vista dello sviluppo sia dal punto di vista computazionale.
 \end{abstract}
 \tableofcontents
 
-\chapter{metti il titolo del capitolo}
-\section{se serve metti il titolo del paragrafo}
-qui poi inizia a scrivere il paragrafo, ogni volta che devi aggiungere un capitolo o un paragrafo copi il comando di sopra. 
-Per andare a capo devi mettere \\ 
-Il comando che trovi sotto indica la fine del documento tutto ciò che devi scrivere va sopra.
+\chapter{Introduzione}
+\section{Formulazione problema}
+Quando si sviluppa un sistema di navigazione autonoma per un robot mobile può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
+Questo porta alla necessita di sviluppare algoritmi di local motion, che permettono al robot di calcolare una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
 
 \end{document}
