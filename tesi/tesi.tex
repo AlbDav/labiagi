@@ -52,5 +52,44 @@ Mette infatti a disposizione strumenti e librerie utili per aiutare gli sviluppa
 
 ROS presenta inoltre alcune caratteristiche di un sistema operativo (gestione di processi, di pacchetti e delle loro dipendenze e astrazione di dispositivi hardware a basso livello) e di un middleware perché permette la comunicazione tra processi/macchine diverse.
 
-Infine costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi tra cui C++, Python e Lisp.
+Infine costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi tra cui C++ e Python.
+
+Uno dei principali punti di forza di ROS è la sua modularità, che gli permette di essere compatibile con robot che hanno caratteristiche molto diverse tra loro.
+La modularità rende inoltre più facile riutilizzare il codice e permette di integrare ROS con altri framework.
+
+ROS include anche alcuni tool che permettono di simulare hardware e di salvare i dati ottenuti dai vari sensori per poi analizzarli.
+
+In ROS il software viene organizzato in package. Ogni package può contenere più eseguibili, chiamati nodi.
+I nodi possono comunicare tra loro in due modi, tramite il meccanismo Publisher/Subscriber oppure tramite il meccanismo dei Services.
+
+ROS è strutturato intorno ad un nodo master che permette ai vari nodi di essere a conoscenza della presenza di altri nodi e di comunicare.
+Il Master è un nodo unico all’interno dell’architettura di ROS che si occupa di assegnare un nome e registrare ogni singolo nodo connesso al sistema come Publisher, Subscriber o Service Provider.
+I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
+Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso.
+
+\section{Publisher/Subscriber}
+È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
+La scrittura di un messaggio avviene su di un topic dai nodi di tipo Publisher e tutti i nodi di tipo Subscriber che desiderano ricevere tale messaggio possono iscriversi a quel topic.
+Per uno stesso topic possono esserci più Publisher e più Subscriber.
+Il messaggio è una struttura dati con diversi campi che possono essere di tipi diversi (sono supportati tutti i tipi standard primitivi integer, floating point, boolean, array e costanti).
+All’interno di un topic è possibile scrivere o leggere solo un tipo di messaggio.
+La definizione dei vari tipi di messaggi viene memorizzata in file .msg.
+
+Nello sviluppo successivamente illustrato questo meccanismo di comunicazione è stato utilizzato per leggere le informazioni inviate dal laser scanner e la velocità in input e per scrivere in output la velocità ricalcolata in base agli ostacoli presenti.
+
+\section{Services}
+Questa modalità di comunicazione tra nodi è invece sincrona e usca la semantica Request/Response.
+Un nodo invia una richiesta a tutti i nodi che forniscono un determinato servizio.
+Da questi nodi riceverà una risposta.
+La struttura dati usata dai servizi è simile a quella dei messaggi, ma ha una sezione per la Request e una per la Response, separate da una riga contenente i caratteri "---".
+La definizione dei vari tipi di servizi viene memorizzata in file .srv.
+
+Nel caso qui presentato questa modalità è stata utilizzata per fornire il risultato dei calcoli effettuati sugli ostacoli circostanti al nodo responsabile della lettura della velocità di input e della scrittura della velocità di output.
+
+\section{stage\_ros}
+Questo package è stato utilizzato per la simulazione del robot e dell'ambiente circostante, compresi i vari ostacoli.
+
+\section{RVIZ}
+RVIZ è stato molto utile per visualizzare in tempo reale i risultati dei calcoli effettuati dal nodo responsabile del calcolo di una traiettoria senza ostacoli.
+
 \end{document}

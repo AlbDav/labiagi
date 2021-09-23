@@ -835,6 +835,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7
 OUTPUT /Users/utente/Progetti/labiagi/tesi/tesi.toc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmro10.tfm
 INPUT /Users/utente/Progetti/labiagi/tesi/tesi.aux
 INPUT /Users/utente/Progetti/labiagi/tesi/tesi.out
 INPUT /Users/utente/Progetti/labiagi/tesi/tesi.out
@@ -844,5 +845,6 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb

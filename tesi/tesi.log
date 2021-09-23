@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.22)  23 SEP 2021 15:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.22)  23 SEP 2021 19:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -513,7 +513,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=20, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=36, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
 Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 28.
@@ -594,23 +594,23 @@ Capitolo 1.
 
 ]
 Capitolo 2.
-[9] (/Users/utente/Progetti/labiagi/tesi/tesi.aux)
+[9] [10] [11] (/Users/utente/Progetti/labiagi/tesi/tesi.aux)
 Package rerunfilecheck Info: File `tesi.out' has not changed.
-(rerunfilecheck)             Checksum: 4A52262BB906FFA613753630993D6723;510.
+(rerunfilecheck)             Checksum: 5FA7A78D8F0128A920A14F358EFCF486;934.
  ) 
 Here is how much of TeX's memory you used:
- 14521 strings out of 478994
- 222295 string characters out of 5858184
- 575247 words of memory out of 5000000
- 31640 multiletter control sequences out of 15000+600000
- 472173 words of font info for 125 fonts, out of 8000000 for 9000
+ 14559 strings out of 478994
+ 222755 string characters out of 5858184
+ 577249 words of memory out of 5000000
+ 31649 multiletter control sequences out of 15000+600000
+ 476181 words of font info for 137 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,131p,373b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb>
-Output written on /Users/utente/Progetti/labiagi/tesi/tesi.pdf (9 pages, 161031 bytes).
+ 84i,12n,131p,373b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb>
+Output written on /Users/utente/Progetti/labiagi/tesi/tesi.pdf (11 pages, 194817 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
- 15 named destinations out of 1000 (max. 500000)
- 40998 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 140 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 21 named destinations out of 1000 (max. 500000)
+ 43078 words of extra memory for PDF output out of 51595 (max. 10000000)
 
