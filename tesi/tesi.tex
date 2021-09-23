@@ -8,8 +8,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \hypersetup{pdftitle={Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field},pdfauthor={Davide Albano}}
-\setlength{\parindent}{1.25em}
-\setlength{\parskip}{0.75em}
+\linespread{1.5}
 
 \title{Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field}
 \author{Davide Albano}
@@ -40,7 +39,18 @@ In particolare è stato scelto il metodo dell'Artificial Potential Field, che è
 
 \chapter{Introduzione}
 \section{Formulazione problema}
-Quando si sviluppa un sistema di navigazione autonoma per un robot mobile può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
-Questo porta alla necessita di sviluppare algoritmi di local motion, che permettono al robot di calcolare una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
+Lo sviluppo di robot mobili a navigazione autonoma si suddivide in due parti: global path planning e local motion control.
+Il global path planning utilizza le informazioni che si hanno sulla mappa per trovare il percorso più corto per andare dal punto di partenza all'obbiettivo.
 
+Tuttavia può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
+Questo porta alla necessita di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
+
+\chapter{ROS}
+\section{Caratteristiche principali}
+ROS (Robot Operating System) è un framework open source utilizzato per lo sviluppo di applicazioni per la robotica.
+Mette infatti a disposizione strumenti e librerie utili per aiutare gli sviluppatori software nella realizzazione di applicazioni robotiche a partire dalla scrittura fino all’esecuzione e al debugging del codice.
+
+ROS presenta inoltre alcune caratteristiche di un sistema operativo (gestione di processi, di pacchetti e delle loro dipendenze e astrazione di dispositivi hardware a basso livello) e di un middleware perché permette la comunicazione tra processi/macchine diverse.
+
+Infine costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi tra cui C++, Python e Lisp.
 \end{document}
