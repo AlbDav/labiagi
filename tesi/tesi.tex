@@ -92,6 +92,13 @@ Questo package è stato utilizzato per la simulazione del robot e dell'ambiente 
 \section{RVIZ}
 RVIZ è stato molto utile per visualizzare in tempo reale i risultati dei calcoli effettuati dal nodo responsabile del calcolo di una traiettoria senza ostacoli.
 
+\section{Artificial Potential Field}
+Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field.
+Quest'ultimo metodo è stato scelto per l'implementazione del progetto.
+
+Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obbiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
+Il potenziale totale U sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo -$\Delta$U(q) indicherà la traiettoria più sicura.\cite{fonte1}
+
 \chapter{Descrizione del progetto}
 \section{Obbiettivo}
 L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
@@ -103,9 +110,12 @@ L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoida
 \section{Nodi, messaggi e servizi}
 Per questo progetto sono stati sviluppati tre nodi ROS:
 \begin{description}
-	\item[twist\_generator] Questo nodo si occupa di simulare una serie di comandi di velocità in input
+	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input
 	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati
 	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection
 \end{description}
+
+\bibliographystyle{plain}
+\bibliography{bibliografia.bib}
 
 \end{document}
