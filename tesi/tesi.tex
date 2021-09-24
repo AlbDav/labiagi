@@ -92,4 +92,20 @@ Questo package è stato utilizzato per la simulazione del robot e dell'ambiente 
 \section{RVIZ}
 RVIZ è stato molto utile per visualizzare in tempo reale i risultati dei calcoli effettuati dal nodo responsabile del calcolo di una traiettoria senza ostacoli.
 
+\chapter{Descrizione del progetto}
+\section{Obbiettivo}
+L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
+\begin{description}
+	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
+	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
+\end{description}
+
+\section{Nodi, messaggi e servizi}
+Per questo progetto sono stati sviluppati tre nodi ROS:
+\begin{description}
+	\item[twist\_generator] Questo nodo si occupa di simulare una serie di comandi di velocità in input
+	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati
+	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection
+\end{description}
+
 \end{document}
