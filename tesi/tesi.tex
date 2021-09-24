@@ -97,7 +97,51 @@ Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi 
 Quest'ultimo metodo è stato scelto per l'implementazione del progetto.
 
 Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obbiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
-Il potenziale totale U sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo -$\Delta$U(q) indicherà la traiettoria più sicura.\cite{fonte1}
+Il potenziale totale U sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo -$\nabla$U(q) indicherà la traiettoria più sicura.\cite{fonte1}
+
+Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obbiettivo: conico quando il robot è lontano, paraboidale quando è vicino.
+In questo modo la formula per il calcolo della campo attrattivo diventa:
+\newline
+$$
+U_{a}(\boldsymbol{q})=\left\{\begin{array}{cll}
+\frac{1}{2} k_{a}\|\boldsymbol{e}(\boldsymbol{q})\|^{2} & \text { if } & \|\boldsymbol{e}(\boldsymbol{q})\| \leq \rho \\
+k_{b}\|\boldsymbol{e}(\boldsymbol{q})\| & \text { if } & \|e(\boldsymbol{q})\|>\rho
+\end{array}\right.
+$$
+\newline
+dove $\boldsymbol{e}=\boldsymbol{q}_{g}-\boldsymbol{q}$, $k_{a}>0$ e $k_{b}>0$.
+Per la continuità della funzione è necessario inoltre che:
+$$
+k_{a} e(\boldsymbol{q})=k_{b} \frac{\boldsymbol{e}(\boldsymbol{q})}{\|\boldsymbol{e}(\boldsymbol{q})\|} \quad \text { for } \quad\|\boldsymbol{e}(\boldsymbol{q})\|=\rho
+$$
+\newline
+e quindi $k_{b}=\rho k_{a}$
+\cite{fonte1}
+
+Per quanto riguarda invece il campo repulsivo, la formula è la seguente:
+\newline
+$$
+U_{r, i}(\boldsymbol{q})=\left\{\begin{array}{ll}
+\frac{k_{r, i}}{\gamma}\left(\frac{1}{\eta_{i}(\boldsymbol{q})}-\frac{1}{\eta_{0, i}}\right)^{\gamma} & \text { if } \eta_{i}(\boldsymbol{q}) \leq \eta_{0, i} \\
+0 & \text { if } \eta_{i}(\boldsymbol{q})>\eta_{0, i}
+\end{array}\right.
+$$
+\newline
+dove $k_{r, i}>0$ e $\gamma=2,3, \ldots$; $\eta_{0, i}$ è il raggio di influenza, mentre $\eta_{i}(\boldsymbol{q})$ è il margine ed è calcolato come segue:
+$$
+\eta_{i}(\boldsymbol{q})=\min _{\boldsymbol{q}^{\prime} \in \mathcal{C O}_{i}}\left\|\boldsymbol{q}-\boldsymbol{q}^{\prime}\right\|
+$$
+\newline
+dove $\mathcal{C O}_{i}$ è la obstacole region.\cite{fonte1}
+
+Otteniamo così una somma dei campi totali:
+$$
+U_{t}(\boldsymbol{q})=U_{a}(\boldsymbol{q})+U_{r}(\boldsymbol{q})
+$$
+da cui possiamo ricavare la formula della forza totale:
+$$
+\boldsymbol{f}_{t}(\boldsymbol{q})=-\nabla U_{t}(\boldsymbol{q})=\boldsymbol{f}_{a}(\boldsymbol{q})+\sum_{i=1}^{p} \boldsymbol{f}_{r, i}(\boldsymbol{q})
+$$
 
 \chapter{Descrizione del progetto}
 \section{Obbiettivo}
