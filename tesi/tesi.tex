@@ -1,4 +1,4 @@
-\documentclass[Lau, binding=0.6cm, twoside]{sapthesis}
+\documentclass[Lau, binding=0.6cm, oneside]{sapthesis}
 \usepackage [italian]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -7,8 +7,28 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{listings}
 \hypersetup{pdftitle={Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field},pdfauthor={Davide Albano}}
 \linespread{1.5}
+\graphicspath{{./img/}}
+\lstset{
+language=Python,
+basicstyle=\footnotesize,
+numbers=none,
+numberstyle=\footnotesize,
+stepnumber=1,
+numbersep=5pt,
+backgroundcolor=\color{white},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+frame=single,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+breakatwhitespace=false,
+escapeinside={\%*}{*)}
+}
 
 \title{Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field}
 \author{Davide Albano}
@@ -45,8 +65,9 @@ Il global path planning utilizza le informazioni che si hanno sulla mappa per tr
 Tuttavia può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
 Questo porta alla necessita di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
 
-\chapter{ROS}
-\section{Caratteristiche principali}
+\chapter{Strumenti necessari alla realizzazione del progetto}
+\section{ROS}
+\subsection{Caratteristiche principali}
 ROS (Robot Operating System) è un framework open source utilizzato per lo sviluppo di applicazioni per la robotica.
 Mette infatti a disposizione strumenti e librerie utili per aiutare gli sviluppatori software nella realizzazione di applicazioni robotiche a partire dalla scrittura fino all’esecuzione e al debugging del codice.
 
@@ -67,7 +88,7 @@ Il Master è un nodo unico all’interno dell’architettura di ROS che si occup
 I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
 Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso.
 
-\section{Publisher/Subscriber}
+\subsection{Publisher/Subscriber}
 È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
 La scrittura di un messaggio avviene su di un topic dai nodi di tipo Publisher e tutti i nodi di tipo Subscriber che desiderano ricevere tale messaggio possono iscriversi a quel topic.
 Per uno stesso topic possono esserci più Publisher e più Subscriber.
@@ -77,7 +98,7 @@ La definizione dei vari tipi di messaggi viene memorizzata in file .msg.
 
 Nello sviluppo successivamente illustrato questo meccanismo di comunicazione è stato utilizzato per leggere le informazioni inviate dal laser scanner e la velocità in input e per scrivere in output la velocità ricalcolata in base agli ostacoli presenti.
 
-\section{Services}
+\subsection{Services}
 Questa modalità di comunicazione tra nodi è invece sincrona e usca la semantica Request/Response.
 Un nodo invia una richiesta a tutti i nodi che forniscono un determinato servizio.
 Da questi nodi riceverà una risposta.
@@ -86,11 +107,17 @@ La definizione dei vari tipi di servizi viene memorizzata in file .srv.
 
 Nel caso qui presentato questa modalità è stata utilizzata per fornire il risultato dei calcoli effettuati sugli ostacoli circostanti al nodo responsabile della lettura della velocità di input e della scrittura della velocità di output.
 
-\section{stage\_ros}
-Questo package è stato utilizzato per la simulazione del robot e dell'ambiente circostante, compresi i vari ostacoli.
+\subsection{stage\_ros}
+Questo package è stato utilizzato per la simulazione del robot e dell'ambiente circostante, compresi i vari ostacoli:
 
-\section{RVIZ}
-RVIZ è stato molto utile per visualizzare in tempo reale i risultati dei calcoli effettuati dal nodo responsabile del calcolo di una traiettoria senza ostacoli.
+\vspace{1em}
+\includegraphics[height=30em]{stage_ros.png}
+
+\subsection{RVIZ}
+RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presenti sui vari topic, come ad esempio la direzione del robot o i rilevamenti effettuati dallo scanner:
+
+\vspace{1em}
+\includegraphics[height=20em]{rviz.png}
 
 \section{Artificial Potential Field}
 Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field.
@@ -151,13 +178,21 @@ L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoida
 	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
 \end{description}
 
-\section{Nodi, messaggi e servizi}
+\section{Nodi, messaggi e servizi sviluppati}
 Per questo progetto sono stati sviluppati tre nodi ROS:
 \begin{description}
 	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input
 	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati
 	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection
 \end{description}
+
+\subsection{obstacle\_detection}
+La parte principale di questo nodo è l'analisi delle informazioni che lo scanner scrive nel topic \textbf{base\_scan}.
+Per poter leggere queste informazioni il nodo come prima cosa si iscrive al topic, specificando la callback che deve essere chiamata appena viene scritto un nuovo messaggio:
+
+\begin{lstlisting}
+	self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
+\end{lstlisting}
 
 \bibliographystyle{plain}
 \bibliography{bibliografia.bib}

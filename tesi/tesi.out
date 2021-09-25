@@ -1,12 +1,14 @@
-\BOOKMARK [0][-]{chapter.1}{\376\377\000I\000n\000t\000r\000o\000d\000u\000z\000i\000o\000n\000e}{}% 1
-\BOOKMARK [1][-]{section.1.1}{\376\377\000F\000o\000r\000m\000u\000l\000a\000z\000i\000o\000n\000e\000\040\000p\000r\000o\000b\000l\000e\000m\000a}{chapter.1}% 2
-\BOOKMARK [0][-]{chapter.2}{\376\377\000R\000O\000S}{}% 3
-\BOOKMARK [1][-]{section.2.1}{\376\377\000C\000a\000r\000a\000t\000t\000e\000r\000i\000s\000t\000i\000c\000h\000e\000\040\000p\000r\000i\000n\000c\000i\000p\000a\000l\000i}{chapter.2}% 4
-\BOOKMARK [1][-]{section.2.2}{\376\377\000P\000u\000b\000l\000i\000s\000h\000e\000r\000/\000S\000u\000b\000s\000c\000r\000i\000b\000e\000r}{chapter.2}% 5
-\BOOKMARK [1][-]{section.2.3}{\376\377\000S\000e\000r\000v\000i\000c\000e\000s}{chapter.2}% 6
-\BOOKMARK [1][-]{section.2.4}{\376\377\000s\000t\000a\000g\000e\000\137\000r\000o\000s}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.5}{\376\377\000R\000V\000I\000Z}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.6}{\376\377\000A\000r\000t\000i\000f\000i\000c\000i\000a\000l\000\040\000P\000o\000t\000e\000n\000t\000i\000a\000l\000\040\000F\000i\000e\000l\000d}{chapter.2}% 9
-\BOOKMARK [0][-]{chapter.3}{\376\377\000D\000e\000s\000c\000r\000i\000z\000i\000o\000n\000e\000\040\000d\000e\000l\000\040\000p\000r\000o\000g\000e\000t\000t\000o}{}% 10
-\BOOKMARK [1][-]{section.3.1}{\376\377\000O\000b\000b\000i\000e\000t\000t\000i\000v\000o}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.2}{\376\377\000N\000o\000d\000i\000,\000\040\000m\000e\000s\000s\000a\000g\000g\000i\000\040\000e\000\040\000s\000e\000r\000v\000i\000z\000i}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter.1}{Introduzione}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Formulazione problema}{chapter.1}% 2
+\BOOKMARK [0][-]{chapter.2}{Strumenti necessari alla realizzazione del progetto}{}% 3
+\BOOKMARK [1][-]{section.2.1}{ROS}{chapter.2}% 4
+\BOOKMARK [2][-]{subsection.2.1.1}{Caratteristiche principali}{section.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.1.2}{Publisher/Subscriber}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.3}{Services}{section.2.1}% 7
+\BOOKMARK [2][-]{subsection.2.1.4}{stage\137ros}{section.2.1}% 8
+\BOOKMARK [2][-]{subsection.2.1.5}{RVIZ}{section.2.1}% 9
+\BOOKMARK [1][-]{section.2.2}{Artificial Potential Field}{chapter.2}% 10
+\BOOKMARK [0][-]{chapter.3}{Descrizione del progetto}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Obbiettivo}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.2}{Nodi, messaggi e servizi sviluppati}{chapter.3}% 13
+\BOOKMARK [2][-]{subsection.3.2.1}{obstacle\137detection}{section.3.2}% 14
