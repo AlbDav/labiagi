@@ -1,6 +1,6 @@
 \BOOKMARK [0][-]{chapter.1}{Introduzione}{}% 1
 \BOOKMARK [1][-]{section.1.1}{Formulazione problema}{chapter.1}% 2
-\BOOKMARK [0][-]{chapter.2}{Strumenti necessari alla realizzazione del progetto}{}% 3
+\BOOKMARK [0][-]{chapter.2}{Strumenti necessari e teoria}{}% 3
 \BOOKMARK [1][-]{section.2.1}{ROS}{chapter.2}% 4
 \BOOKMARK [2][-]{subsection.2.1.1}{Caratteristiche principali}{section.2.1}% 5
 \BOOKMARK [2][-]{subsection.2.1.2}{Publisher/Subscriber}{section.2.1}% 6
@@ -8,8 +8,10 @@
 \BOOKMARK [2][-]{subsection.2.1.4}{stage\137ros}{section.2.1}% 8
 \BOOKMARK [2][-]{subsection.2.1.5}{RVIZ}{section.2.1}% 9
 \BOOKMARK [1][-]{section.2.2}{Artificial Potential Field}{chapter.2}% 10
-\BOOKMARK [0][-]{chapter.3}{Descrizione del progetto}{}% 11
-\BOOKMARK [1][-]{section.3.1}{Obbiettivo}{chapter.3}% 12
-\BOOKMARK [1][-]{section.3.2}{Nodi, messaggi e servizi sviluppati}{chapter.3}% 13
-\BOOKMARK [2][-]{subsection.3.2.1}{obstacle\137detection}{section.3.2}% 14
-\BOOKMARK [2][-]{subsection.3.2.2}{cmd\137vel\137controller}{section.3.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.1}{Teoria}{section.2.2}% 11
+\BOOKMARK [2][-]{subsection.2.2.2}{Applicazione per i robot su ruote}{section.2.2}% 12
+\BOOKMARK [0][-]{chapter.3}{Descrizione del progetto}{}% 13
+\BOOKMARK [1][-]{section.3.1}{Obbiettivo}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.2}{Nodi, messaggi e servizi sviluppati}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.2.1}{obstacle\137detection}{section.3.2}% 16
+\BOOKMARK [2][-]{subsection.3.2.2}{cmd\137vel\137controller}{section.3.2}% 17

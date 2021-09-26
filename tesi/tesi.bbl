@@ -1,6 +1,12 @@
 \begin{thebibliography}{1}
 
 \bibitem{fonte1}
+Prof. Marcello~Chiaberge Lorenzo~Galtarossa.
+\newblock Obstacle avoidance algorithms for autonomous navigation system in
+  unstructured indoor areas.
+\newblock {\em Politecnico di Torino}, 2018.
+
+\bibitem{fonte2}
 Prof.~Giuseppe Oriolo.
 \newblock Autonomous and {Mobile} {Robotics} - {Artificial} {Potential}
   {Fields}.

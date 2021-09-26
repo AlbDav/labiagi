@@ -64,8 +64,9 @@ Il global path planning utilizza le informazioni che si hanno sulla mappa per tr
 
 Tuttavia può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
 Questo porta alla necessita di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
+\cite{fonte1}
 
-\chapter{Strumenti necessari alla realizzazione del progetto}
+\chapter{Strumenti necessari e teoria}
 \section{ROS}
 \subsection{Caratteristiche principali}
 ROS (Robot Operating System) è un framework open source utilizzato per lo sviluppo di applicazioni per la robotica.
@@ -120,11 +121,12 @@ RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presen
 \includegraphics[height=20em]{rviz.png}
 
 \section{Artificial Potential Field}
+\subsection{Teoria}
 Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field.
 Quest'ultimo metodo è stato scelto per l'implementazione del progetto.
 
 Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obbiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
-Il potenziale totale U sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo -$\nabla$U(q) indicherà la traiettoria più sicura.\cite{fonte1}
+Il potenziale totale U sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo -$\nabla$U(q) indicherà la traiettoria più sicura.
 
 Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obbiettivo: conico quando il robot è lontano, paraboidale quando è vicino.
 In questo modo la formula per il calcolo della campo attrattivo diventa:
@@ -143,7 +145,6 @@ k_{a} e(\boldsymbol{q})=k_{b} \frac{\boldsymbol{e}(\boldsymbol{q})}{\|\boldsymbo
 $$
 \newline
 e quindi $k_{b}=\rho k_{a}$
-\cite{fonte1}
 
 Per quanto riguarda invece il campo repulsivo, la formula è la seguente:
 \newline
@@ -159,7 +160,7 @@ $$
 \eta_{i}(\boldsymbol{q})=\min _{\boldsymbol{q}^{\prime} \in \mathcal{C O}_{i}}\left\|\boldsymbol{q}-\boldsymbol{q}^{\prime}\right\|
 $$
 \newline
-dove $\mathcal{C O}_{i}$ è la obstacole region.\cite{fonte1}
+dove $\mathcal{C O}_{i}$ è la obstacole region.
 
 Otteniamo così una somma dei campi totali:
 $$
@@ -169,6 +170,19 @@ da cui possiamo ricavare la formula della forza totale:
 $$
 \boldsymbol{f}_{t}(\boldsymbol{q})=-\nabla U_{t}(\boldsymbol{q})=\boldsymbol{f}_{a}(\boldsymbol{q})+\sum_{i=1}^{p} \boldsymbol{f}_{r, i}(\boldsymbol{q})
 $$
+
+\subsection{Applicazione per i robot su ruote}
+Essendo soggetti a determinati vincoli di movimento, nel caso dei robot su ruote non è possibile applicare direttamente la forza risultante calcolata precedentemente.
+Partendo da una forza artificiale $\boldsymbol{f}_{t}=\left(\begin{array}{lll}f_{t, x} & f_{t, y} & f_{t, \theta}\end{array}\right)^{T}$ possiamo ottenere:
+
+$$
+\begin{array}{l}
+v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
+\omega=f_{t, \theta}
+\end{array}
+$$
+
+\cite{fonte2}
 
 \chapter{Descrizione del progetto}
 \section{Obbiettivo}
