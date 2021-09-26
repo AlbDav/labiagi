@@ -57,7 +57,7 @@ class obstacleDetection:
         self.marker.pose.orientation.y = q[1]
         self.marker.pose.orientation.z = q[2]
         self.marker.pose.orientation.w = q[3]
-        self.marker.scale.x = self.force.magnitude
+        self.marker.scale.x = 0.1 * self.force.magnitude if self.force.magnitude > 0.05 else 0.05
         self.marker.scale.y = 0.05
         self.marker.scale.z = 0.05
 
