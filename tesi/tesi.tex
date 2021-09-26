@@ -133,14 +133,22 @@ Nel caso qui presentato questa modalità è stata utilizzata per fornire il risu
 \subsection{stage\_ros}
 Questo package è stato utilizzato per la simulazione del robot e dell'ambiente circostante, compresi i vari ostacoli:
 
-\vspace{1em}
-\includegraphics[height=30em]{stage_ros.png}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[height=30em]{stage_ros.png}
+    \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obbiettivo (il quadrato rosso)}
+    \label{fig:stage_ros}
+\end{figure}
 
 \subsection{RVIZ}
 RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presenti sui vari topic, come ad esempio la direzione del robot o i rilevamenti effettuati dallo scanner:
 
-\vspace{1em}
-\includegraphics[height=20em]{rviz.png}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[height=20em]{rviz.png}
+    \caption{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)}
+    \label{fig:rviz}
+\end{figure}
 
 \section{Artificial Potential Field}
 \subsection{Teoria}
@@ -329,24 +337,54 @@ def callback(self, msg):
 \section{Descrizione dell'esecuzione}
 Per avere un'idea dei calcoli effettuati dall'algoritmo è stata aggiunta una parte di codice che ha la funzione di scrivere sul topic \textbf{marker} le informazioni sulla forza risultante calcolata.
 In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in ogni istante dell'esecuzione:
-\newline
-\newline
-\includegraphics[width=14cm]{rviz_force1.png}
-Come è possibile notare dalla sequenza delle immagini, nel test analizzato si partiva da una situazione in cui la risultante delle forze (rappresentata dalla freccia verde) è nulla, poiché il robot è abbastanza distante da qualsiasi ostacolo.
-\newline
-\newline
-\includegraphics[width=14cm]{rviz_force2.png}
-Quando si prova ad avvicinare il robot a un ostacolo, la forza risultante aumenta notevolmente.
-\newline
-\newline
-\includegraphics[width=14cm]{rviz_force3.png}
-La direzione del robot (rappresentata dalla freccia rossa) viene quindi corretta in base alla forza calcolata.
-\newline
-\newline
-\includegraphics[width=14cm]{rviz_force5.png}
-Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=13cm]{rviz_force1.png}
+    \caption{Come è possibile notare, nel test analizzato si parte da una situazione in cui la risultante delle forze (rappresentata dalla freccia verde) è nulla, poiché il robot è abbastanza distante da qualsiasi ostacolo.}
+    \label{fig:rviz_force1}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=13cm]{rviz_force2.png}
+    \caption{Quando si prova ad avvicinare il robot a un ostacolo, la forza risultante aumenta notevolmente.}
+    \label{fig:rviz_force2}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=13cm]{rviz_force3.png}
+    \caption{La direzione del robot (rappresentata dalla freccia rossa) viene quindi corretta in base alla forza calcolata.}
+    \label{fig:rviz_force3}
+\end{figure}
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=13cm]{rviz_force5.png}
+    \caption{Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.}
+    \label{fig:rviz_force5}
+\end{figure}
 
+\section{Analisi dei test e scelta dei parametri}
+Durante la fase di test è stato necessario valutare i seguenti parametri:
+\begin{description}
+    \item[Soglia misurazioni scanner] Questo parametro serve a decidere quanto devono essere vicini gli ostacoli per costituire un possibile problema di collisione.
+    \item[Coefficiente velocità angolare] Questo parametro serve a specificare quanto velocemente ridirezionare il robot verso la zona sicura.
+    \item[Coefficiente velocità lineare] Questo parametro serve a spedificare quanto deve muoversi il robot nella nuova direzione calcolata.
+\end{description}
+Dopo aver svolto alcune osservazioni si è giunti a una conclusione.
 
+Per quanto riguarda il primo parametro, è stato scelto 1.25 come distanza di soglia; infatti è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano troppo la libertà di manovra del robot, portandolo a volte a bloccarsi in loop.
+
+Per quanto riguarda il secondo ed il terzo parametro non è stato possibile trovare una combinazione di valori adeguata in quanto si è notato che valori troppo alti della velocità lineare di output potevano portare a delle collisioni.
+Si è optato quindi per limitare la velocità lineare di output a valori inferiori a 0.75, scelta che rende quasi nulla la possibilità di collisione.
+Con questo valore massimo della velocità di output è stato possibile scegliere il coefficiente per la velocità angolare pari a 1.
+
+\chapter{Conclusioni}
+Durante lo svolgimento di questo progetto è stato possibile capire l'importanza che possono ricoprire nella robotica gli algoritmi di local motion control.
+Durante i test il robot è stato infatti messo in una condizione di totale assenza di informazioni riguardo alla mappa in cui era situato.
+Tutti i calcoli fatti dal robot si basavano quindi solo sulle informazioni che poteva raccogliere in tempo reale.
+Questo evidenzia la capacità degli algoritmi di local motion control (come ad esempio quello dell'Artificial Potential Field presentato in questo studio) di reagire prontamente a eventuali imprevisti.
+
+È stato tuttavia messo in evidenza quanto sia importante la scelta dei parametri per il corretto funzionamento dell'algoritmo, che va effettuata a seguito di test e simulazioni.
+Questi parametri potrebbero infatti cambiare in base all'applicazione che si deve fare dell'algoritmo.
 
 \bibliographystyle{plain}
 \bibliography{bibliografia.bib}
