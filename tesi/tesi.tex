@@ -66,6 +66,22 @@ Tuttavia può capitare che le informazioni sull'ambiente in cui il robot dovrà 
 Questo porta alla necessita di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
 \cite{fonte1}
 
+\section{Importanza della Collision Avoidance}
+In un mondo che tende sempre di più all'automazione, il problema della Collision Avoidance diventa sempre di maggiore rilievo.
+L'utilizzo principale di questo tipo di algoritmi si possono trovare principalmente nel settore dei trasporti e nell'Industry 4.0.
+
+\subsection{Settore dei trasporti}
+All'interno del settore dei trasporti sono in corso molti studi dal punto di vista dei trasporti via terra.
+Sono infatti molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonomi.
+Questi sistemi devono dunque essere in grado di reagire a tutti i possibili imprevisti che si potrebbero incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
+
+Oltre agli spostamenti via terra anche via mare e via aria, con particolare interesse riservato a rover sottomarini e droni con guida automatica.
+
+\subsection{Industry 4.0}
+Per quanto riguarda il settore industriale, sempre più aziende stanno passando all'Industry 4.0, che prevede una automazione avanzata all'interno degli impianti produttivi.
+In fabbriche dove questi robot mobili lavorano anche a contatto con gli operatori diventa essenziale che i robot riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
+In questo caso entrano in campo gli algoritmi di collision avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
+
 \chapter{Strumenti necessari e teoria}
 \section{ROS}
 \subsection{Caratteristiche principali}
@@ -87,7 +103,7 @@ I nodi possono comunicare tra loro in due modi, tramite il meccanismo Publisher/
 ROS è strutturato intorno ad un nodo master che permette ai vari nodi di essere a conoscenza della presenza di altri nodi e di comunicare.
 Il Master è un nodo unico all’interno dell’architettura di ROS che si occupa di assegnare un nome e registrare ogni singolo nodo connesso al sistema come Publisher, Subscriber o Service Provider.
 I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
-Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso.
+Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso.\cite{fonte3}
 
 \subsection{Publisher/Subscriber}
 È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
@@ -182,7 +198,7 @@ v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
 \end{array}
 $$
 
-dove $\theta$ è l'angolo formato tra l'asse delle x e il piano sagittale del robot, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo:
+dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo:
 
 $$
 f_{t, \theta}=k_{\theta}\left(\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)-\theta\right)
@@ -202,6 +218,17 @@ L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoida
 Data la semplicità del caso in esame è stato possibile scegliere come sistema di riferimento il sistema di riferimento mobile del robot.
 Questo ha portato a una semplificazione delle formule.
 Infatti in questo modo la posizione del robot è sempre $\left(x, y\right)=(0,0)$, mentre l'angolo $\theta$ definito nel capitolo precedente è sempre 0.
+
+In questo modo le formule prima presentate diventano:
+
+$$
+\begin{array}{l}
+v=\left\|\left(f_{t, x}, f_{t, y}\right)\right\| \\
+\omega=\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)
+\end{array}
+$$
+
+Infatti tramite $\omega$ facciamo ruotare il robot nella direzione della forza risultante, e poi lo facciamo muovere linearmente impostando $v$ uguale al modulo della forza.
 
 \section{Nodi, messaggi e servizi sviluppati}
 Per questo progetto sono stati sviluppati tre nodi ROS:
