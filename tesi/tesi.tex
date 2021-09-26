@@ -40,8 +40,6 @@ escapeinside={\%*}{*)}
 \advisor{Prof. Giorgio Grisetti}
 \authoremail{albano.1708530@studenti.uniroma1.it}
 
-\examdate{ }
-\examiner{ }
 \versiondate{ } %queste tre righe non serve che le compili poi quando vai a stampare fai togliere questa parte perchè non si può cancellare sennò non parte il file
 \begin{document}
 \maketitle
@@ -81,6 +79,14 @@ Oltre agli spostamenti via terra anche via mare e via aria, con particolare inte
 Per quanto riguarda il settore industriale, sempre più aziende stanno passando all'Industry 4.0, che prevede una automazione avanzata all'interno degli impianti produttivi.
 In fabbriche dove questi robot mobili lavorano anche a contatto con gli operatori diventa essenziale che i robot riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
 In questo caso entrano in campo gli algoritmi di collision avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
+
+\section{Obbiettivo di questo progetto}
+L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
+\begin{description}
+	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
+	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
+\end{description}
+Quindi, a differenza della definizione classica del problema, nel caso analizzato non avremo un obbiettivo da raggiungere ma una velocità iniziale del robot, su cui si andrà a intervenire affinché il robot non vada a sbattere.
 
 \chapter{Strumenti necessari e teoria}
 \section{ROS}
@@ -207,13 +213,6 @@ $$
 \cite{fonte2}
 
 \chapter{Descrizione del progetto}
-\section{Obbiettivo}
-L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
-\begin{description}
-	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
-	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
-\end{description}
-
 \section{Sistema di riferimento}
 Data la semplicità del caso in esame è stato possibile scegliere come sistema di riferimento il sistema di riferimento mobile del robot.
 Questo ha portato a una semplificazione delle formule.
@@ -327,6 +326,9 @@ def callback(self, msg):
 \end{lstlisting}
 
 \chapter{Esecuzione e test dell'algoritmo}
+\section{Descrizione dell'esecuzione}
+Per avere un'idea dei calcoli effettuati dall'algoritmo è stata aggiunta una parte di codice che ha la funzione di scrivere sul topic \textbf{marker} le informazioni sulla forza risultante calcolata.
+In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in ogni istante dell'esecuzione:
 
 
 \bibliographystyle{plain}
