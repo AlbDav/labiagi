@@ -198,7 +198,7 @@ v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
 \end{array}
 $$
 
-dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo:
+dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento \cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo:
 
 $$
 f_{t, \theta}=k_{\theta}\left(\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)-\theta\right)
@@ -227,7 +227,6 @@ v=\left\|\left(f_{t, x}, f_{t, y}\right)\right\| \\
 \omega=\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)
 \end{array}
 $$
-
 Infatti tramite $\omega$ facciamo ruotare il robot nella direzione della forza risultante, e poi lo facciamo muovere linearmente impostando $v$ uguale al modulo della forza.
 
 \section{Nodi, messaggi e servizi sviluppati}
