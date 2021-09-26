@@ -14,3 +14,4 @@
 \contentsline {section}{\numberline {3.1}Obbiettivo}{10}{section.3.1}
 \contentsline {section}{\numberline {3.2}Nodi, messaggi e servizi sviluppati}{10}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}obstacle\_detection}{11}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}cmd\_vel\_controller}{12}{subsection.3.2.2}

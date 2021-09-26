@@ -256,6 +256,13 @@ INPUT /usr/share/texmf/fonts/tfm/public/lm/lmbsy7.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr8.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ts1-lmr9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/rm-lmr9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/lmmi9.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/lmsy9.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.bbl
 INPUT /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.bbl
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmri10.tfm
@@ -264,12 +271,13 @@ INPUT /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi
 INPUT /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.out
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc
-INPUT /usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmex10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb
@@ -287,3 +295,4 @@ INPUT /usr/share/texmf/fonts/type1/public/lm/lmss17.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb
 INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb
+INPUT /usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb

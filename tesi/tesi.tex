@@ -194,6 +194,87 @@ Per poter leggere queste informazioni il nodo come prima cosa si iscrive al topi
 	self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
 \end{lstlisting}
 
+Questo nodo dovrà inoltre reigstrarsi come provider del servizio \textbf{force\_service} e inizializzare la variabile \textbf{force}.
+La forza risultante agente sul robot viene infatti calcolata da questo noto, salvata nella variabile \textbf{force} e poi fornita a qualunque nodo la richieda:
+
+\begin{lstlisting}
+    self.srv = rospy.Service('force_service', Force, self.force_service)
+    self.force = ForceResponse(0, 0)
+\end{lstlisting}
+
+\begin{lstlisting}
+def force_service(self, request):
+    return self.force
+\end{lstlisting}
+
+Ogni volta che lo scanner inserirà una nuova rilevazione sotto froma di messaggio nel topic \textbf{base\_scan}, verrà quindi chiamata la callback, che filtrerà i dati rilevati in base a un parametro di soglia, ne calcolerà l'equivalente forza repulsiva e infine invocherà per ogni valore calcolato la funzione \textbf{set\_net\_force}:
+
+\begin{lstlisting}
+def callback(self, msg):
+    self.force = ForceResponse(0, 0)
+    for i, val in enumerate(msg.ranges, start=0):
+        if val >= 1.25:
+            continue
+        magnitude = 1 / val
+        temp_angle = msg.angle_min + (i * msg.angle_increment)
+        x = magnitude * math.cos(temp_angle)
+        y = magnitude * math.sin(temp_angle)
+        angle = math.atan2(-y, -x)
+        force = ForceResponse(magnitude, angle)
+        self.set_net_force(force)
+\end{lstlisting}
+
+La funzione \textbf{set\_net\_force} si occuperà quindi di calcolare progressivamente la risultante delle varie forze calcolate dalla callback e di salvare il risultato nella variabile \textbf{force}:
+
+\begin{lstlisting}
+def set_net_force(self, force):
+    x1 = self.force.magnitude * math.cos(self.force.angle)
+    y1 = self.force.magnitude * math.sin(self.force.angle)
+    x2 = force.magnitude * math.cos(force.angle)
+    y2 = force.magnitude * math.sin(force.angle)
+    x_total = x1 + x2
+    y_total = y1 + y2
+    total_magnitude = math.sqrt(x_total ** 2 +  y_total ** 2)
+    total_angle = math.atan2(y_total, x_total)
+    self.force = ForceResponse(total_magnitude, total_angle)
+\end{lstlisting}
+
+\subsection{cmd\_vel\_controller}
+Questo nodo si occupa di leggere la velocità di input e di scrivere in output la velocità ricalcolata in base alla forza repulsiva risultante calcolata da \textbf{obsatcle\_detection}.
+Per fare ciò deve registrarsi come Subscriber al topic \textbf{cmd\_vel\_input} e come Publisher al topic \textbf{cmd\_vel}:
+
+\begin{lstlisting}
+    self.pub = rospy.Subscriber('/cmd_vel_input', Twist, self.callback)
+    self.pub = rospy.Publisher('/cmd_vel', Twist, queue_size=10)
+\end{lstlisting}
+
+Nella funzione di callback chiamerà quindi il servizio \textbf{force\_service} che gli fornirà il valore corrente della forza repulsiva risultante.
+Con questo valore popolerà i valori della velocità lineare sull'asse x e di quella angolare sull'asse z.
+Infine invierà il messaggio sul topic \textbf{cmd\_vel}, che corrisponde al topic di input del robot:
+
+\begin{lstlisting}
+def callback(self, msg):
+    if msg.linear.x == 0:
+        self.pub.publish(msg)
+        return
+    rospy.wait_for_service('force_service')
+    try:
+        force_service = rospy.ServiceProxy('force_service', Force)
+        force = force_service()
+        vel_msg = Twist()
+        x_linear = msg.linear.x + force.magnitude
+        vel_msg.linear.x = x_linear if x_linear < 0.75 else 0.75
+        vel_msg.linear.y = 0
+        vel_msg.linear.z = 0
+        vel_msg.angular.x = 0
+        vel_msg.angular.y = 0
+        vel_msg.angular.z = msg.angular.z + force.angle
+        print(vel_msg)
+        self.pub.publish(vel_msg)
+    except rospy.ServiceException as e:
+        print('Service call failed: %s' %e)
+\end{lstlisting}
+
 \bibliographystyle{plain}
 \bibliography{bibliografia.bib}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.9.25)  25 SEP 2021 16:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.9.25)  26 SEP 2021 12:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -997,7 +997,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=60, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=64, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
 Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 48.
@@ -1088,7 +1088,7 @@ Overfull \hbox (37.55498pt too wide) has occurred while \output is active
  []
 
 [6]
-<./img/stage_ros.png, id=118, 653.44125pt x 711.65875pt>
+<./img/stage_ros.png, id=123, 653.44125pt x 711.65875pt>
 File: ./img/stage_ros.png Graphic file (type png)
 <use ./img/stage_ros.png>
 Package pdftex.def Info: ./img/stage_ros.png  used on input line 114.
@@ -1099,7 +1099,7 @@ Overfull \hbox (37.55498pt too wide) has occurred while \output is active
  []
 
 [7 <./img/stage_ros.png>]
-<./img/rviz.png, id=125, 1287.81125pt x 892.33376pt>
+<./img/rviz.png, id=130, 1287.81125pt x 892.33376pt>
 File: ./img/rviz.png Graphic file (type png)
 <use ./img/rviz.png>
 Package pdftex.def Info: ./img/rviz.png  used on input line 120.
@@ -1128,31 +1128,34 @@ Overfull \hbox (37.55498pt too wide) has occurred while \output is active
 Capitolo 3.
 [10
 
-] (/home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.bbl [11])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 200.
- [12
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <9> on input line 222.
+ [11] [12] (/home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.bbl [13])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
+ [14
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 200.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
  (/home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 200.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 200.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 281.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
 Package rerunfilecheck Info: File `tesi.out' has not changed.
-(rerunfilecheck)             Checksum: 55BC191172274125A67CD77159F1C3DA;931.
+(rerunfilecheck)             Checksum: F6131A952913B835E188447555C4E44B;1009.
  ) 
 Here is how much of TeX's memory you used:
- 13567 strings out of 492982
- 201083 string characters out of 6134896
- 356036 words of memory out of 5000000
- 16772 multiletter control sequences out of 15000+600000
- 104600 words of font info for 118 fonts, out of 8000000 for 9000
+ 13705 strings out of 492982
+ 202899 string characters out of 6134896
+ 448036 words of memory out of 5000000
+ 16838 multiletter control sequences out of 15000+600000
+ 112401 words of font info for 130 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 60i,13n,94p,868b,1258s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb>
-Output written on /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.pdf (13 pages, 445938 bytes).
+ 60i,13n,94p,868b,1890s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb>
+Output written on /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.pdf (15 pages, 488511 bytes).
 PDF statistics:
- 247 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 32 named destinations out of 1000 (max. 500000)
- 29312 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 336 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 32392 words of extra memory for PDF output out of 35830 (max. 10000000)
 
