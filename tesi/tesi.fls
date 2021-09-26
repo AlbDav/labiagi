@@ -233,11 +233,11 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 OUTPUT /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.toc
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmro10.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr17.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr12.tfm
 INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmbx12.tfm
-INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmro10.tfm
 INPUT /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/./img/stage_ros.png
 INPUT ./img/stage_ros.png
 INPUT ./img/stage_ros.png

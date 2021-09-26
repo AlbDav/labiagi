@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.9.25)  26 SEP 2021 18:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2021.9.25)  26 SEP 2021 20:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -997,7 +997,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=88, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=92, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
 Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 48.
@@ -1068,73 +1068,77 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 4.
-)
+ [3
+
+])
 \tf@toc=\write4
 \openout4 = `tesi.toc'.
 
- [3
-
-]
+ [4]
 Capitolo 1.
-[4
+[5
 
-] [5]
+] [6]
 Capitolo 2.
-[6
+[7
 
-] [7]
-<./img/stage_ros.png, id=162, 653.44125pt x 711.65875pt>
+] [8]
+<./img/stage_ros.png, id=171, 653.44125pt x 711.65875pt>
 File: ./img/stage_ros.png Graphic file (type png)
 <use ./img/stage_ros.png>
 Package pdftex.def Info: ./img/stage_ros.png  used on input line 131.
 (pdftex.def)             Requested size: 301.62357pt x 328.49991pt.
-<./img/rviz.png, id=164, 1287.81125pt x 892.33376pt>
+<./img/rviz.png, id=173, 1287.81125pt x 892.33376pt>
 File: ./img/rviz.png Graphic file (type png)
 <use ./img/rviz.png>
 Package pdftex.def Info: ./img/rviz.png  used on input line 137.
 (pdftex.def)             Requested size: 316.0569pt x 218.99994pt.
- [8 <./img/stage_ros.png>]
+ [9 <./img/stage_ros.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 147--150
 
  []
 
-[9 <./img/rviz.png>]
+[10 <./img/rviz.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 165--167
 
  []
 
-[10]
+[11]
 Capitolo 3.
-[11
+[12
 
-] [12]
+] [13]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <9> on input line 273.
- [13] (/home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.bbl [14])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 332.
- [15
+ [14] [15]
+Capitolo 4.
+(/home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.bbl [16
+
+])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 335.
+ [17
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 332.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 335.
  (/home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 332.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 332.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 335.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 335.
 Package rerunfilecheck Info: File `tesi.out' has not changed.
-(rerunfilecheck)             Checksum: 5A295BC0ACBAA85274139D8271B34DBE;1426.
+(rerunfilecheck)             Checksum: 41C756076B405FA98A65AA194DDCF23E;1494.
  ) 
 Here is how much of TeX's memory you used:
- 13734 strings out of 492982
- 203253 string characters out of 6134896
+ 13738 strings out of 492982
+ 203287 string characters out of 6134896
  465036 words of memory out of 5000000
- 16847 multiletter control sequences out of 15000+600000
+ 16848 multiletter control sequences out of 15000+600000
  112863 words of font info for 135 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,13n,94p,868b,1880s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx9.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmmib10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmro10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy6.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy9.pfb>
-Output written on /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.pdf (16 pages, 497813 bytes).
+Output written on /home/me/labiagi_2020_21/workspaces/catkin_ws/src/collision_avoidance/tesi/tesi.pdf (18 pages, 499186 bytes).
 PDF statistics:
- 377 PDF objects out of 1000 (max. 8388607)
- 328 compressed objects within 4 object streams
- 99 named destinations out of 1000 (max. 500000)
- 32440 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 390 PDF objects out of 1000 (max. 8388607)
+ 339 compressed objects within 4 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 32448 words of extra memory for PDF output out of 35830 (max. 10000000)
 
