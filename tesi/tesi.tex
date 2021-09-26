@@ -182,6 +182,12 @@ v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
 \end{array}
 $$
 
+dove $\theta$ è l'angolo formato tra l'asse delle x e il piano sagittale del robot, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo:
+
+$$
+f_{t, \theta}=k_{\theta}\left(\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)-\theta\right)
+$$
+
 \cite{fonte2}
 
 \chapter{Descrizione del progetto}
@@ -191,6 +197,11 @@ L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoida
 	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
 	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
 \end{description}
+
+\section{Sistema di riferimento}
+Data la semplicità del caso in esame è stato possibile scegliere come sistema di riferimento il sistema di riferimento mobile del robot.
+Questo ha portato a una semplificazione delle formule.
+Infatti in questo modo la posizione del robot è sempre $\left(x, y\right)=(0,0)$, mentre l'angolo $\theta$ definito nel capitolo precedente è sempre 0.
 
 \section{Nodi, messaggi e servizi sviluppati}
 Per questo progetto sono stati sviluppati tre nodi ROS:
