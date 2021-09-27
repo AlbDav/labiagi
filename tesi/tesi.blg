@@ -3,47 +3,51 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: tesi.aux
 The style file: plain.bst
 Database file #1: bibliografia.bib
+Warning--empty journal in fonte5
+Warning--empty year in fonte5
+Warning--empty journal in fonte6
+Warning--empty year in fonte6
 Warning--empty year in fonte2
 Warning--empty year in fonte4
-You've used 4 entries,
+You've used 6 entries,
             2118 wiz_defined-function locations,
-            512 strings with 4480 characters,
-and the built_in function-call counts, 838 in all, are:
-= -- 78
-> -- 28
+            518 strings with 4688 characters,
+and the built_in function-call counts, 1236 in all, are:
+= -- 112
+> -- 42
 < -- 0
-+ -- 12
-- -- 8
-* -- 38
-:= -- 163
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 16
++ -- 18
+- -- 12
+* -- 60
+:= -- 235
+add.period$ -- 16
+call.type$ -- 6
+change.case$ -- 24
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 40
-empty$ -- 69
-format.name$ -- 8
-if$ -- 163
+cite$ -- 12
+duplicate$ -- 60
+empty$ -- 103
+format.name$ -- 12
+if$ -- 239
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 4
-newline$ -- 23
-num.names$ -- 8
-pop$ -- 20
+int.to.str$ -- 6
+missing$ -- 6
+newline$ -- 31
+num.names$ -- 12
+pop$ -- 36
 preamble$ -- 1
-purify$ -- 12
+purify$ -- 18
 quote$ -- 0
-skip$ -- 26
+skip$ -- 38
 stack$ -- 0
-substring$ -- 20
+substring$ -- 30
 swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 16
-warning$ -- 2
-while$ -- 8
-width$ -- 5
-write$ -- 40
-(There were 2 warnings)
+type$ -- 24
+warning$ -- 6
+while$ -- 12
+width$ -- 7
+write$ -- 54
+(There were 6 warnings)

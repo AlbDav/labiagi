@@ -18,12 +18,14 @@
 \contentsline {subsection}{\numberline {2.2.2}Applicazione per i robot su ruote}{12}{subsection.2.2.2}%
 \contentsline {chapter}{\numberline {3}Descrizione del progetto}{13}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Sistema di riferimento}{13}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Nodi, messaggi e servizi sviluppati}{13}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Nodi, messaggi e servizi utilizzati}{13}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}twist\_generator}{14}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}obstacle\_detection}{14}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}cmd\_vel\_controller}{16}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Force.srv}{17}{subsection.3.2.4}%
-\contentsline {chapter}{\numberline {4}Esecuzione e test dell'algoritmo}{18}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Descrizione dell'esecuzione}{18}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Analisi dei test e scelta dei parametri}{20}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Conclusioni}{22}{chapter.5}%
+\contentsline {subsection}{\numberline {3.2.4}geometry\_msgs/Twist.msg}{17}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}sensor\_msgs/LaserScan.msg}{17}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Force.srv}{18}{subsection.3.2.6}%
+\contentsline {chapter}{\numberline {4}Esecuzione e test dell'algoritmo}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Descrizione dell'esecuzione}{19}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Analisi dei test e scelta dei parametri}{22}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Conclusioni}{23}{chapter.5}%

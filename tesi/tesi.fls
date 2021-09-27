@@ -888,6 +888,8 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/lmbsy7.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr8.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx9.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmri9.tfm
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/tfm/public/lm/ts1-lmri9.tfm
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force1.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force1.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force1.png
@@ -903,6 +905,11 @@ INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force3.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force3.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force3.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force3.png
+INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force4.png
+INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force4.png
+INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force4.png
+INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force4.png
+INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force4.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force5.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force5.png
 INPUT /Users/utente/Progetti/labiagi/tesi/./img//rviz_force5.png
@@ -917,11 +924,11 @@ INPUT /Users/utente/Progetti/labiagi/tesi/tesi.aux
 INPUT /Users/utente/Progetti/labiagi/tesi/tesi.out
 INPUT /Users/utente/Progetti/labiagi/tesi/tesi.out
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
-INPUT /usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx9.pfb
@@ -936,6 +943,7 @@ INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb
+INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri9.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb
 INPUT /usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb

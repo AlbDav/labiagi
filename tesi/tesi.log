@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.22)  27 SEP 2021 16:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.22)  27 SEP 2021 18:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -538,7 +538,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-<sapienza-MLred-pos.pdf, id=112, 288.07625pt x 89.33376pt>
+<sapienza-MLred-pos.pdf, id=120, 288.07625pt x 89.33376pt>
 File: sapienza-MLred-pos.pdf Graphic file (type pdf)
 <use sapienza-MLred-pos.pdf>
 Package pdftex.def Info: sapienza-MLred-pos.pdf  used on input line 46.
@@ -624,13 +624,13 @@ Capitolo 2.
 [7
 
 ] [8]
-<./img//stage_ros.png, id=196, 653.44125pt x 711.65875pt>
+<./img//stage_ros.png, id=206, 653.44125pt x 711.65875pt>
 File: ./img//stage_ros.png Graphic file (type png)
 <use ./img//stage_ros.png>
 Package pdftex.def Info: ./img//stage_ros.png  used on input line 140.
 (pdftex.def)             Requested size: 301.62357pt x 328.49991pt.
  [9 </Users/utente/Progetti/labiagi/tesi/./img//stage_ros.png>]
-<./img//rviz.png, id=205, 1287.81125pt x 892.33376pt>
+<./img//rviz.png, id=215, 1287.81125pt x 892.33376pt>
 File: ./img//rviz.png Graphic file (type png)
 <use ./img//rviz.png>
 Package pdftex.def Info: ./img//rviz.png  used on input line 150.
@@ -649,53 +649,58 @@ Underfull \hbox (badness 10000) in paragraph at lines 181--183
 Capitolo 3.
 [13
 
-] [14] [15] [16] [17]
+] [14] [15] [16] [17] [18]
 Capitolo 4.
-<./img//rviz_force1.png, id=338, 2569.6pt x 1084.05pt>
+<./img//rviz_force1.png, id=381, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force1.png Graphic file (type png)
 <use ./img//rviz_force1.png>
-Package pdftex.def Info: ./img//rviz_force1.png  used on input line 380.
+Package pdftex.def Info: ./img//rviz_force1.png  used on input line 412.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force2.png, id=339, 2569.6pt x 1084.05pt>
+<./img//rviz_force2.png, id=382, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force2.png Graphic file (type png)
 <use ./img//rviz_force2.png>
-Package pdftex.def Info: ./img//rviz_force2.png  used on input line 386.
+Package pdftex.def Info: ./img//rviz_force2.png  used on input line 418.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force3.png, id=340, 2569.6pt x 1084.05pt>
+<./img//rviz_force3.png, id=383, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force3.png Graphic file (type png)
 <use ./img//rviz_force3.png>
-Package pdftex.def Info: ./img//rviz_force3.png  used on input line 392.
+Package pdftex.def Info: ./img//rviz_force3.png  used on input line 424.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force5.png, id=341, 2569.6pt x 1084.05pt>
+<./img//rviz_force4.png, id=384, 2569.6pt x 1084.05pt>
+File: ./img//rviz_force4.png Graphic file (type png)
+<use ./img//rviz_force4.png>
+Package pdftex.def Info: ./img//rviz_force4.png  used on input line 430.
+(pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
+<./img//rviz_force5.png, id=385, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force5.png Graphic file (type png)
 <use ./img//rviz_force5.png>
-Package pdftex.def Info: ./img//rviz_force5.png  used on input line 398.
+Package pdftex.def Info: ./img//rviz_force5.png  used on input line 436.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-[18
+[19
 
- </Users/utente/Progetti/labiagi/tesi/./img//rviz_force1.png>] [19 </Users/utente/Progetti/labiagi/tesi/./img//rviz_force2.png> </Users/utente/Progetti/labiagi/tesi/./img//rviz_force3.png>] [20 </Users/utente/Progetti/labiagi/tesi/./img//rviz_force5.png>] [21]
+ </Users/utente/Progetti/labiagi/tesi/./img//rviz_force1.png>] [20 </Users/utente/Progetti/labiagi/tesi/./img//rviz_force2.png> </Users/utente/Progetti/labiagi/tesi/./img//rviz_force3.png>] [21 </Users/utente/Progetti/labiagi/tesi/./img//rviz_force4.png> </Users/utente/Progetti/labiagi/tesi/./img//rviz_force5.png>] [22]
 Capitolo 5.
-(/Users/utente/Progetti/labiagi/tesi/tesi.bbl [22
+(/Users/utente/Progetti/labiagi/tesi/tesi.bbl [23
 
-]) [23
+]) [24
 
 ] (/Users/utente/Progetti/labiagi/tesi/tesi.aux)
 Package rerunfilecheck Info: File `tesi.out' has not changed.
-(rerunfilecheck)             Checksum: 5178DB42B0F6F76E77D8665B8C1D6262;4364.
+(rerunfilecheck)             Checksum: 8FE771EE20B1FA55B3ED37331A96DEEF;4734.
  ) 
 Here is how much of TeX's memory you used:
- 16706 strings out of 478994
- 251074 string characters out of 5858184
+ 16772 strings out of 478994
+ 252075 string characters out of 5858184
  988528 words of memory out of 5000000
- 33549 multiletter control sequences out of 15000+600000
- 513547 words of font info for 198 fonts, out of 8000000 for 9000
+ 33574 multiletter control sequences out of 15000+600000
+ 518819 words of font info for 205 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,131p,416b,1897s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on /Users/utente/Progetti/labiagi/tesi/tesi.pdf (24 pages, 1239320 bytes).
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
+Output written on /Users/utente/Progetti/labiagi/tesi/tesi.pdf (25 pages, 1443844 bytes).
 PDF statistics:
- 478 PDF objects out of 1000 (max. 8388607)
- 417 compressed objects within 5 object streams
- 140 named destinations out of 1000 (max. 500000)
- 65788 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 532 PDF objects out of 1000 (max. 8388607)
+ 468 compressed objects within 5 object streams
+ 168 named destinations out of 1000 (max. 500000)
+ 69905 words of extra memory for PDF output out of 74296 (max. 10000000)
 

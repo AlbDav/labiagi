@@ -235,7 +235,7 @@ v=\left\|\left(f_{t, x}, f_{t, y}\right)\right\| \\
 $$
 Infatti tramite $\omega$ facciamo ruotare il robot nella direzione della forza risultante, e poi lo facciamo muovere linearmente impostando $v$ uguale al modulo della forza.
 
-\section{Nodi, messaggi e servizi sviluppati}
+\section{Nodi, messaggi e servizi utilizzati}
 Per questo progetto sono stati sviluppati tre nodi ROS:
 \begin{description}
 	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input.
@@ -359,6 +359,38 @@ def callback(self, msg):
         print('Service call failed: %s' %e)
 \end{lstlisting}
 
+\subsection{geometry\_msgs/Twist.msg}
+La definizione del tipo Twist.msg è presente nella libreria fornita da ROS, ed è la seguente\cite{fonte5}:
+\begin{lstlisting}
+# This expresses velocity in free space broken into its linear and angular parts.
+
+Vector3  linear
+Vector3  angular
+\end{lstlisting}
+I messaggi di tipo Twist sono quelli che sono usati sui topic \textbf{cmd\_vel\_input} e \textbf{cmd\_vel}.
+Ogni variabile di tipo Vector3 è composta da 3 componenti (x, y e z), che in questo caso corrispondo alle componenti delle velocità lineare e angolare.
+
+\subsection{sensor\_msgs/LaserScan.msg}
+Anche per quanto riguarda i messaggi inviati sul topic \textbf{base\_scan} è stato usato un messaggio definito nella libreria ROS\cite{fonte6}:
+\begin{lstlisting}
+# Single scan from a planar laser range-finder
+
+Header header
+
+float32 angle_min        # start angle of the scan [rad]
+float32 angle_max        # end angle of the scan [rad]
+float32 angle_increment  # angular distance between measurements [rad]
+
+float32 time_increment   # time between measurements [seconds]
+float32 scan_time        # time between scans [seconds]
+
+float32 range_min        # minimum range value [m]
+float32 range_max        # maximum range value [m]
+
+float32[] ranges         # range data [m]
+float32[] intensities    # intensity data [device-specific units].
+\end{lstlisting}
+
 \subsection{Force.srv}
 Mentre per i messaggi è stato possibile usare dei tipi già definiti nella libreria ROS, per quanto riguarda il servizio \textbf{force\_service} si è rivelato necessario definire un nuovo tipo di messaggio con le informazioni essenziali a rappresentare la forza risultante:
 
@@ -395,8 +427,14 @@ In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in og
 \end{figure}
 \begin{figure}[htp]
     \centering
+    \includegraphics[width=13.5cm]{rviz_force4.png}
+    \caption{Dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.}
+    \label{fig:rviz_force4}
+\end{figure}
+\begin{figure}[htp]
+    \centering
     \includegraphics[width=13.5cm]{rviz_force5.png}
-    \caption{Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.}
+    \caption{Infine, il robot si trova nuovamente in una zona in il rischio di collisioni è minimo.}
     \label{fig:rviz_force5}
 \end{figure}
 
@@ -404,25 +442,27 @@ In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in og
 Durante la fase di test è stato necessario valutare i seguenti parametri:
 \begin{description}
     \item[Soglia misurazioni scanner] Questo parametro serve a decidere quanto devono essere vicini gli ostacoli per costituire un possibile problema di collisione.
-    \item[Coefficiente velocità angolare] Questo parametro serve a specificare quanto velocemente ridirezionare il robot verso la zona sicura.
-    \item[Coefficiente velocità lineare] Questo parametro serve a spedificare quanto deve muoversi il robot nella nuova direzione calcolata.
+    \item[Coefficiente velocità angolare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità angolare.
+    \item[Coefficiente velocità lineare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità lineare.
 \end{description}
 Dopo aver svolto alcune osservazioni si è giunti a una conclusione.
 
-Per quanto riguarda il primo parametro, è stato scelto 1.25 come distanza di soglia; infatti è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano troppo la libertà di manovra del robot, portandolo a volte a bloccarsi in loop.
+Per quanto riguarda il primo parametro, è stato scelto 1.25 come distanza di soglia; infatti è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano la libertà di manovra del robot, portandolo a volte a rimanere bloccato in un loop.
 
-Per quanto riguarda il secondo ed il terzo parametro non è stato possibile trovare una combinazione di valori adeguata in quanto si è notato che valori troppo alti della velocità lineare di output potevano portare a delle collisioni.
+Per quanto riguarda il secondo ed il terzo parametro non è stato possibile trovare una combinazione di valori adeguata in quanto si è notato che valori troppo alti della velocità lineare di output potevano sempre portare a delle collisioni.
 Si è optato quindi per limitare la velocità lineare di output a valori inferiori a 0.75, scelta che rende quasi nulla la possibilità di collisione.
-Con questo valore massimo della velocità di output è stato possibile scegliere il coefficiente per la velocità angolare pari a 1.
+Con questo valore massimo è stato possibile scegliere pari a 1 il coefficiente per la velocità angolare, che non verrà quindi attenuata.
 
 \chapter{Conclusioni}
 Durante lo svolgimento di questo progetto è stato possibile capire l'importanza che possono ricoprire nella robotica gli algoritmi di local motion control.
 Durante i test il robot è stato infatti messo in una condizione di totale assenza di informazioni riguardo alla mappa in cui era situato.
-Tutti i calcoli fatti dal robot si basavano quindi solo sulle informazioni che poteva raccogliere in tempo reale.
-Questo evidenzia la capacità degli algoritmi di local motion control (come ad esempio quello dell'Artificial Potential Field presentato in questo studio) di reagire prontamente a eventuali imprevisti.
+Tutti i calcoli fatti dal robot si basavano quindi solo sulle informazioni che potevano essere raccolte in tempo reale.
+Questo evidenzia la capacità degli algoritmi di local motion control (come ad esempio quello dell'Artificial Potential Field,presentato in questo studio) di reagire prontamente a eventuali imprevisti.
 
 È stato tuttavia messo in evidenza quanto sia importante la scelta dei parametri per il corretto funzionamento dell'algoritmo, che va effettuata a seguito di test e simulazioni.
 Questi parametri potrebbero infatti cambiare in base all'applicazione che si deve fare dell'algoritmo.
+
+Nonostante l'importanza di questo tipo di algoritmi, è stato tuttavia possibile notare le loro limitazioni e la necessità di associarli con algoritmi di global path planning e SLAM (Simultaneus Localization and Mapping), per avere una accuratezza e delle prestazioni migliori.
 
 \bibliographystyle{plain}
 \bibliography{bibliografia.bib}

@@ -1,5 +1,13 @@
 \begin{thebibliography}{1}
 
+\bibitem{fonte5}
+http://docs.ros.org/en/noetic/api/geometry\_msgs/html/msg/Twist.html.
+\newblock geometry\_msgs/twist message.
+
+\bibitem{fonte6}
+http://docs.ros.org/en/noetic/api/sensor\_msgs/html/msg/LaserScan.html.
+\newblock sensor\_msgs/laserscan message.
+
 \bibitem{fonte1}
 Prof. Marcello~Chiaberge Lorenzo~Galtarossa.
 \newblock Obstacle avoidance algorithms for autonomous navigation system in
