@@ -176,7 +176,7 @@ $$
 k_{a} e(\boldsymbol{q})=k_{b} \frac{\boldsymbol{e}(\boldsymbol{q})}{\|\boldsymbol{e}(\boldsymbol{q})\|} \quad \text { for } \quad\|\boldsymbol{e}(\boldsymbol{q})\|=\rho
 $$
 \newline
-e quindi $k_{b}=\rho k_{a}$
+e quindi $k_{b}=\rho k_{a}$.
 
 Per quanto riguarda invece il campo repulsivo, la formula è la seguente:
 \newline
@@ -202,10 +202,11 @@ da cui possiamo ricavare la formula della forza totale:
 $$
 \boldsymbol{f}_{t}(\boldsymbol{q})=-\nabla U_{t}(\boldsymbol{q})=\boldsymbol{f}_{a}(\boldsymbol{q})+\sum_{i=1}^{p} \boldsymbol{f}_{r, i}(\boldsymbol{q})
 $$
+\cite{fonte2}
 
 \subsection{Applicazione per i robot su ruote}
-Essendo soggetti a determinati vincoli di movimento, nel caso dei robot su ruote non è possibile applicare direttamente la forza risultante calcolata precedentemente.
-Partendo da una forza artificiale $\boldsymbol{f}_{t}=\left(\begin{array}{lll}f_{t, x} & f_{t, y} & f_{t, \theta}\end{array}\right)^{T}$ possiamo ottenere:
+Essendo soggetti a determinati vincoli di movimento, nel caso dei robot su ruote non è possibile applicare direttamente la forza risultante appena calcolata.
+Partendo da una forza artificiale $\boldsymbol{f}_{t}=\left(\begin{array}{lll}f_{t, x} & f_{t, y} & f_{t, \theta}\end{array}\right)^{T}$ possiamo tuttavia ottenere:
 
 $$
 \begin{array}{l}
@@ -213,14 +214,11 @@ v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
 \omega=f_{t, \theta}
 \end{array}
 $$
-
-dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento \cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo:
+dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento \cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo\cite{fonte2}:
 
 $$
 f_{t, \theta}=k_{\theta}\left(\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)-\theta\right)
 $$
-
-\cite{fonte2}
 
 \chapter{Descrizione del progetto}
 \section{Sistema di riferimento}
@@ -228,8 +226,7 @@ Data la semplicità del caso in esame è stato possibile scegliere come sistema 
 Questo ha portato a una semplificazione delle formule.
 Infatti in questo modo la posizione del robot è sempre $\left(x, y\right)=(0,0)$, mentre l'angolo $\theta$ definito nel capitolo precedente è sempre 0.
 
-In questo modo le formule prima presentate diventano:
-
+Le formule prima presentate diventano quindi:
 $$
 \begin{array}{l}
 v=\left\|\left(f_{t, x}, f_{t, y}\right)\right\| \\
@@ -241,10 +238,37 @@ Infatti tramite $\omega$ facciamo ruotare il robot nella direzione della forza r
 \section{Nodi, messaggi e servizi sviluppati}
 Per questo progetto sono stati sviluppati tre nodi ROS:
 \begin{description}
-	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input
-	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati
-	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection
+	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input.
+	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati su tali informazioni.
+	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection.
 \end{description}
+
+\subsection{twist\_generator}
+Per poter scrivere sul topic di input della velocità \textbf{cmd\_vel\_input}, questo nodo deve innanzitutto registrarsi come Publisher su quel topic:
+
+\begin{lstlisting}
+	self.pub = rospy.Publisher('/cmd_vel_input', Twist, queue_size=10)
+\end{lstlisting}
+
+Il nodo andrà quindi a chiamare la funzione \textbf{move}, che scriverà sul topic un messaggio con una velocità angolare casuale e poi inizierà a inviare una serie di messaggi con velocità lineare casuale:
+
+\begin{lstlisting}
+def move(self):
+    vel_msg = Twist()
+    vel_msg.linear.x = 0
+    vel_msg.linear.y = 0
+    vel_msg.linear.z = 0
+    vel_msg.angular.x = 0
+    vel_msg.angular.y = 0
+    vel_msg.angular.z = -5 + random() * 10
+    self.pub.publish(vel_msg)
+    vel_msg.angular.z = 0
+    while not rospy.is_shutdown():
+        vel_msg.linear.x = random() * 10
+        self.pub.publish(vel_msg)
+        self.pub = rospy.Publisher('/cmd_vel_input', Twist, queue_size=10)
+\end{lstlisting}
+In questo modo il robot partirà con una direzione iniziale sempre diversa e poi continuerà ad andare avanti con velocità diverse.
 
 \subsection{obstacle\_detection}
 La parte principale di questo nodo è l'analisi delle informazioni che lo scanner scrive nel topic \textbf{base\_scan}.
@@ -255,7 +279,7 @@ Per poter leggere queste informazioni il nodo come prima cosa si iscrive al topi
 \end{lstlisting}
 
 Questo nodo dovrà inoltre reigstrarsi come provider del servizio \textbf{force\_service} e inizializzare la variabile \textbf{force}.
-La forza risultante agente sul robot viene infatti calcolata da questo noto, salvata nella variabile \textbf{force} e poi fornita a qualunque nodo la richieda:
+La forza risultante agente sul robot viene infatti calcolata da questo nodo, salvata nella variabile \textbf{force} e poi fornita a qualunque nodo la richieda:
 
 \begin{lstlisting}
     self.srv = rospy.Service('force_service', Force, self.force_service)
@@ -300,7 +324,7 @@ def set_net_force(self, force):
 \end{lstlisting}
 
 \subsection{cmd\_vel\_controller}
-Questo nodo si occupa di leggere la velocità di input e di scrivere in output la velocità ricalcolata in base alla forza repulsiva risultante calcolata da \textbf{obsatcle\_detection}.
+Questo nodo si occupa di leggere la velocità di input e di scrivere in output la velocità ricalcolata in base alla forza repulsiva risultante.
 Per fare ciò deve registrarsi come Subscriber al topic \textbf{cmd\_vel\_input} e come Publisher al topic \textbf{cmd\_vel}:
 
 \begin{lstlisting}
@@ -309,7 +333,7 @@ Per fare ciò deve registrarsi come Subscriber al topic \textbf{cmd\_vel\_input}
 \end{lstlisting}
 
 Nella funzione di callback chiamerà quindi il servizio \textbf{force\_service} che gli fornirà il valore corrente della forza repulsiva risultante.
-Con questo valore popolerà i valori della velocità lineare sull'asse x e di quella angolare sull'asse z.
+Con il risultato della chiamata a questo servizio popolerà i valori della velocità lineare sull'asse x e di quella angolare sull'asse z.
 Infine invierà il messaggio sul topic \textbf{cmd\_vel}, che corrisponde al topic di input del robot:
 
 \begin{lstlisting}
@@ -334,6 +358,18 @@ def callback(self, msg):
     except rospy.ServiceException as e:
         print('Service call failed: %s' %e)
 \end{lstlisting}
+
+\subsection{Force.srv}
+Mentre per i messaggi è stato possibile usare dei tipi già definiti nella libreria ROS, per quanto riguarda il servizio \textbf{force\_service} si è rivelato necessario definire un nuovo tipo di messaggio con le informazioni essenziali a rappresentare la forza risultante:
+
+\begin{lstlisting}
+---
+float64 magnitude
+float64 angle
+\end{lstlisting}
+
+Come spiegato precedentemente, le due parti del file .srv separate dai caratteri "\lstinline{---}" corrispondono rispettivamente alla Request e alla Responde del servizio.
+Infatti in questo caso specifico \textbf{force\_service} non prende nessun parametro di input e restituisce un oggtto con due proprietà: il modulo della forza e l'angolo che essa forma con il robot.
 
 \chapter{Esecuzione e test dell'algoritmo}
 \section{Descrizione dell'esecuzione}

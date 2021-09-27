@@ -47,6 +47,7 @@
 \newlabel{fig:rviz}{{2.2}{10}{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)\relax }{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Artificial Potential Field}{10}{section.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}Teoria}{10}{subsection.2.2.1}\protected@file@percent }
+\citation{fonte2}
 \citation{fonte4}
 \citation{fonte2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Applicazione per i robot su ruote}{12}{subsection.2.2.2}\protected@file@percent }
@@ -55,28 +56,30 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Sistema di riferimento}{13}{section.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Nodi, messaggi e servizi sviluppati}{13}{section.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}obstacle\_detection}{14}{subsection.3.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}cmd\_vel\_controller}{15}{subsection.3.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Esecuzione e test dell'algoritmo}{17}{chapter.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}twist\_generator}{14}{subsection.3.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}obstacle\_detection}{14}{subsection.3.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}cmd\_vel\_controller}{16}{subsection.3.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Force.srv}{17}{subsection.3.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Esecuzione e test dell'algoritmo}{18}{chapter.4}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Descrizione dell'esecuzione}{17}{section.4.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Come è possibile notare, nel test analizzato si parte da una situazione in cui la risultante delle forze (rappresentata dalla freccia verde) è nulla, poiché il robot è abbastanza distante da qualsiasi ostacolo.\relax }}{17}{figure.caption.4}\protected@file@percent }
-\newlabel{fig:rviz_force1}{{4.1}{17}{Come è possibile notare, nel test analizzato si parte da una situazione in cui la risultante delle forze (rappresentata dalla freccia verde) è nulla, poiché il robot è abbastanza distante da qualsiasi ostacolo.\relax }{figure.caption.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Quando si prova ad avvicinare il robot a un ostacolo, la forza risultante aumenta notevolmente.\relax }}{18}{figure.caption.5}\protected@file@percent }
-\newlabel{fig:rviz_force2}{{4.2}{18}{Quando si prova ad avvicinare il robot a un ostacolo, la forza risultante aumenta notevolmente.\relax }{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces La direzione del robot (rappresentata dalla freccia rossa) viene quindi corretta in base alla forza calcolata.\relax }}{18}{figure.caption.6}\protected@file@percent }
-\newlabel{fig:rviz_force3}{{4.3}{18}{La direzione del robot (rappresentata dalla freccia rossa) viene quindi corretta in base alla forza calcolata.\relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.\relax }}{19}{figure.caption.7}\protected@file@percent }
-\newlabel{fig:rviz_force5}{{4.4}{19}{Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Analisi dei test e scelta dei parametri}{19}{section.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Descrizione dell'esecuzione}{18}{section.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Come è possibile notare, nel test analizzato si parte da una situazione in cui la risultante delle forze (rappresentata dalla freccia verde) è nulla, poiché il robot è abbastanza distante da qualsiasi ostacolo.\relax }}{18}{figure.caption.4}\protected@file@percent }
+\newlabel{fig:rviz_force1}{{4.1}{18}{Come è possibile notare, nel test analizzato si parte da una situazione in cui la risultante delle forze (rappresentata dalla freccia verde) è nulla, poiché il robot è abbastanza distante da qualsiasi ostacolo.\relax }{figure.caption.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Quando si prova ad avvicinare il robot a un ostacolo, la forza risultante aumenta notevolmente.\relax }}{19}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:rviz_force2}{{4.2}{19}{Quando si prova ad avvicinare il robot a un ostacolo, la forza risultante aumenta notevolmente.\relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces La direzione del robot (rappresentata dalla freccia rossa) viene quindi corretta in base alla forza calcolata.\relax }}{19}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:rviz_force3}{{4.3}{19}{La direzione del robot (rappresentata dalla freccia rossa) viene quindi corretta in base alla forza calcolata.\relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.4}{\ignorespaces Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.\relax }}{20}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:rviz_force5}{{4.4}{20}{Infine, dopo le dovute correzioni, il robot viene portato in una zona in cui la presenza di ostacoli vicini è minore.\relax }{figure.caption.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Analisi dei test e scelta dei parametri}{20}{section.4.2}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{bibliografia.bib}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusioni}{21}{chapter.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Conclusioni}{22}{chapter.5}\protected@file@percent }
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \bibcite{fonte1}{1}
 \bibcite{fonte2}{2}
 \bibcite{fonte4}{3}
 \bibcite{fonte3}{4}
-\gdef \@abspage@last{23}
+\gdef \@abspage@last{24}

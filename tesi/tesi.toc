@@ -19,9 +19,11 @@
 \contentsline {chapter}{\numberline {3}Descrizione del progetto}{13}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Sistema di riferimento}{13}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Nodi, messaggi e servizi sviluppati}{13}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}obstacle\_detection}{14}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}cmd\_vel\_controller}{15}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Esecuzione e test dell'algoritmo}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Descrizione dell'esecuzione}{17}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Analisi dei test e scelta dei parametri}{19}{section.4.2}%
-\contentsline {chapter}{\numberline {5}Conclusioni}{21}{chapter.5}%
+\contentsline {subsection}{\numberline {3.2.1}twist\_generator}{14}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}obstacle\_detection}{14}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}cmd\_vel\_controller}{16}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Force.srv}{17}{subsection.3.2.4}%
+\contentsline {chapter}{\numberline {4}Esecuzione e test dell'algoritmo}{18}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Descrizione dell'esecuzione}{18}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Analisi dei test e scelta dei parametri}{20}{section.4.2}%
+\contentsline {chapter}{\numberline {5}Conclusioni}{22}{chapter.5}%
