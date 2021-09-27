@@ -45,10 +45,10 @@ escapeinside={\%*}{*)}
 \maketitle
 \begin{abstract}
 L'obbiettivo di questo lavoro è l'implementazionie di un sistema che permetta a un robot di muoversi all'interno di un ambiente evitando eventuali ostacoli.
-Il robot preso in considerazione non conosce l'ambiente in cui dovrà muoversi e può quindi basarsi soltanto sulle rilevazioni fatte tramite in laser scanner.
+Il robot preso in considerazione non conosce l'ambiente in cui dovrà muoversi e può quindi basarsi soltanto sulle rilevazioni fatte tramite un laser scanner.
 
-Per l'implementazione è stato usato ROS (Robot Operating System) un framework open source usato per gestire le operazioni e le cominucazioni dei vari nodi di un robot.
-Per la simulazione è stato usato il pacchetto stage\_ros, mentre per la visualizzazione delle informazioni sulla traiettoria calcolate dal robot è stato usato il tool RVIZ.
+Per l'implementazione è stato usato ROS (Robot Operating System), un framework open source usato per gestire le operazioni e le cominucazioni dei vari nodi di un robot.
+Per la simulazione è stato usato il pacchetto stage\_ros, mentre per la visualizzazione delle informazioni dei vari sensori e della traiettoria calcolata dal robot è stato usato il tool RVIZ.
 
 Data l'assenza di informazioni iniziali riguardo alla mappa è stata necessario scegliere un algoritmo di local motion planning.
 In particolare è stato scelto il metodo dell'Artificial Potential Field, che è spesso usato per la sua semplicità sia dal punto di vista dello sviluppo sia dal punto di vista computazionale.
@@ -61,27 +61,27 @@ Lo sviluppo di robot mobili a navigazione autonoma si suddivide in due parti: gl
 Il global path planning utilizza le informazioni che si hanno sulla mappa per trovare il percorso più corto per andare dal punto di partenza all'obbiettivo.
 
 Tuttavia può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
-Questo porta alla necessita di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
+Questo porta alla necessità di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
 \cite{fonte1}
 
 \section{Importanza della Collision Avoidance}
 In un mondo che tende sempre di più all'automazione, il problema della Collision Avoidance diventa sempre di maggiore rilievo.
-L'utilizzo principale di questo tipo di algoritmi si possono trovare principalmente nel settore dei trasporti e nell'Industry 4.0.
+L'utilizzo principale di questo tipo di algoritmi si può trovare principalmente nel settore dei trasporti e nell'Industry 4.0.
 
 \subsection{Settore dei trasporti}
 All'interno del settore dei trasporti sono in corso molti studi dal punto di vista dei trasporti via terra.
 Sono infatti molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonomi.
 Questi sistemi devono dunque essere in grado di reagire a tutti i possibili imprevisti che si potrebbero incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
 
-Oltre agli spostamenti via terra anche via mare e via aria, con particolare interesse riservato a rover sottomarini e droni con guida automatica.
+Anche per gli spostamenti via mare e via aria sono in corso numerosi studi riguardanti la navigazione autonoma, con particolare interesse per i droni sottomarini (UUV) e aerei (UAV).
 
 \subsection{Industry 4.0}
 Per quanto riguarda il settore industriale, sempre più aziende stanno passando all'Industry 4.0, che prevede una automazione avanzata all'interno degli impianti produttivi.
-In fabbriche dove questi robot mobili lavorano anche a contatto con gli operatori diventa essenziale che i robot riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
+In fabbriche dove questi robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
 In questo caso entrano in campo gli algoritmi di collision avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
 
 \section{Obbiettivo di questo progetto}
-L'obbiettivo di questo progetto era di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
+L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
 \begin{description}
 	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
 	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
@@ -96,18 +96,18 @@ Mette infatti a disposizione strumenti e librerie utili per aiutare gli sviluppa
 
 ROS presenta inoltre alcune caratteristiche di un sistema operativo (gestione di processi, di pacchetti e delle loro dipendenze e astrazione di dispositivi hardware a basso livello) e di un middleware perché permette la comunicazione tra processi/macchine diverse.
 
-Infine costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi tra cui C++ e Python.
+Infine costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi, tra cui C++ e Python.
 
 Uno dei principali punti di forza di ROS è la sua modularità, che gli permette di essere compatibile con robot che hanno caratteristiche molto diverse tra loro.
 La modularità rende inoltre più facile riutilizzare il codice e permette di integrare ROS con altri framework.
 
 ROS include anche alcuni tool che permettono di simulare hardware e di salvare i dati ottenuti dai vari sensori per poi analizzarli.
 
-In ROS il software viene organizzato in package. Ogni package può contenere più eseguibili, chiamati nodi.
+Il software viene organizzato in packages. Ogni package può contenere più eseguibili, chiamati nodi.
 I nodi possono comunicare tra loro in due modi, tramite il meccanismo Publisher/Subscriber oppure tramite il meccanismo dei Services.
 
 ROS è strutturato intorno ad un nodo master che permette ai vari nodi di essere a conoscenza della presenza di altri nodi e di comunicare.
-Il Master è un nodo unico all’interno dell’architettura di ROS che si occupa di assegnare un nome e registrare ogni singolo nodo connesso al sistema come Publisher, Subscriber o Service Provider.
+Il Master è un nodo unico all’interno dell’architettura di ROS e si occupa di assegnare un nome a ogni nodo connesso al sistema e di registrarlo eventualmente come Publisher, Subscriber o Service Provider.
 I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
 Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso.\cite{fonte3}
 
@@ -115,6 +115,7 @@ Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo c
 È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
 La scrittura di un messaggio avviene su di un topic dai nodi di tipo Publisher e tutti i nodi di tipo Subscriber che desiderano ricevere tale messaggio possono iscriversi a quel topic.
 Per uno stesso topic possono esserci più Publisher e più Subscriber.
+
 Il messaggio è una struttura dati con diversi campi che possono essere di tipi diversi (sono supportati tutti i tipi standard primitivi integer, floating point, boolean, array e costanti).
 All’interno di un topic è possibile scrivere o leggere solo un tipo di messaggio.
 La definizione dei vari tipi di messaggi viene memorizzata in file .msg.
@@ -122,13 +123,14 @@ La definizione dei vari tipi di messaggi viene memorizzata in file .msg.
 Nello sviluppo successivamente illustrato questo meccanismo di comunicazione è stato utilizzato per leggere le informazioni inviate dal laser scanner e la velocità in input e per scrivere in output la velocità ricalcolata in base agli ostacoli presenti.
 
 \subsection{Services}
-Questa modalità di comunicazione tra nodi è invece sincrona e usca la semantica Request/Response.
+Questa modalità di comunicazione tra nodi è invece sincrona e usa la semantica Request/Response.
 Un nodo invia una richiesta a tutti i nodi che forniscono un determinato servizio.
 Da questi nodi riceverà una risposta.
-La struttura dati usata dai servizi è simile a quella dei messaggi, ma ha una sezione per la Request e una per la Response, separate da una riga contenente i caratteri "---".
+
+La struttura dati usata dai servizi è simile a quella dei messaggi, ma ha una sezione per la Request e una per la Response, separate da una riga contenente i caratteri "\lstinline{---}".
 La definizione dei vari tipi di servizi viene memorizzata in file .srv.
 
-Nel caso qui presentato questa modalità è stata utilizzata per fornire il risultato dei calcoli effettuati sugli ostacoli circostanti al nodo responsabile della lettura della velocità di input e della scrittura della velocità di output.
+Nel caso qui presentato questa modalità è stata utilizzata per fornire il risultato dei calcoli effettuati sugli ostacoli circostanti al nodo che si occuperà poi di determinare la velocità e la direzione di output.
 
 \subsection{stage\_ros}
 Questo package è stato utilizzato per la simulazione del robot e dell'ambiente circostante, compresi i vari ostacoli:
@@ -152,11 +154,11 @@ RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presen
 
 \section{Artificial Potential Field}
 \subsection{Teoria}
-Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field.
+Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field\cite{fonte1}.
 Quest'ultimo metodo è stato scelto per l'implementazione del progetto.
 
 Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obbiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
-Il potenziale totale U sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo -$\nabla$U(q) indicherà la traiettoria più sicura.
+Il potenziale totale $U$ sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo $-\nabla U(q)$ indicherà la traiettoria più sicura.
 
 Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obbiettivo: conico quando il robot è lontano, paraboidale quando è vicino.
 In questo modo la formula per il calcolo della campo attrattivo diventa:
