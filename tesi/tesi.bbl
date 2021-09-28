@@ -1,4 +1,10 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{fonte10}
+Alessia Conzonato.
+\newblock Sensori, un dispositivo made in italy per prevenire gli incidenti sul
+  lavoro.
+\newblock {\em Corriere della Sera}, 2021.
 
 \bibitem{fonte5}
 http://docs.ros.org/en/noetic/api/geometry\_msgs/html/msg/Twist.html.
@@ -11,6 +17,16 @@ http://docs.ros.org/en/noetic/api/sensor\_msgs/html/msg/LaserScan.html.
 \bibitem{fonte7}
 http://docs.ros.org/en/noetic/api/visualization\_msgs/html/msg/Marker.html.
 \newblock visualization\_msgs/marker message.
+
+\bibitem{fonte9}
+https://www.elettric80.com/en/news/press/the-new-collision-avoidance-system-that-increases-the-reliability-of-industry
+  4-0/.
+\newblock Smartdect: the new collision avoidance system that increases the
+  reliability of industry 4.0.
+
+\bibitem{fonte8}
+https://www.orcad.com/it/node/6581.
+\newblock How do collision avoidance systems work?
 
 \bibitem{fonte1}
 Prof. Marcello~Chiaberge Lorenzo~Galtarossa.

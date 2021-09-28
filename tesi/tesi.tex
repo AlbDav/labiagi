@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{float}
 \hypersetup{pdftitle={Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field},pdfauthor={Davide Albano}}
 \linespread{1.5}
 \graphicspath{{./img/}}
@@ -72,6 +73,14 @@ L'utilizzo principale di questo tipo di algoritmi si può trovare principalmente
 All'interno del settore dei trasporti sono in corso molti studi dal punto di vista dei trasporti via terra.
 Sono infatti molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonomi.
 Questi sistemi devono dunque essere in grado di reagire a tutti i possibili imprevisti che si potrebbero incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
+Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune funzioni di Collsion Avoidance sono già implementate dalla maggior parte delle case automobilistiche; tra queste funzioni troviamo\cite{fonte8}:
+\begin{description}
+	\item[Adaptive Cruis Control] Questo sistema usa radar e laser per adattare la velocità in modo da mantenere la giusta distanza dal veicolo che sta davanti.
+	\item[Automatic Emergency Braking (AEB)] In questo caso vengono attivati i freni per evitare una collisione o per ridurre la velocità di impatto.
+	\item[Rear Automatic Emergency Braking] I freni vengono attivati per evitare collisioni quando il veicolo sta indietreggiando.
+	\item[Electronic Stability Control (ESC)] Applica automaticamente i freni per aiutare a guidare l'auto durante una perdita di trazione. Un computer di bordo monitora vari sensori per determinare quali ruote frenare e quali accelerare.
+	\item[Parking Assist] I feedback delle telecamere e dei sensori vengono combinati per consentire al veicolo di sterzare in un parcheggio mentre il conducente controlla la velocità.
+\end{description} 
 
 Anche per gli spostamenti via mare e via aria sono in corso numerosi studi riguardanti la navigazione autonoma, con particolare interesse per i droni sottomarini (UUV) e aerei (UAV).
 
@@ -79,6 +88,11 @@ Anche per gli spostamenti via mare e via aria sono in corso numerosi studi rigua
 Per quanto riguarda il settore industriale, sempre più aziende stanno passando all'Industry 4.0, che prevede una automazione avanzata all'interno degli impianti produttivi.
 In fabbriche dove questi robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
 In questo caso entrano in campo gli algoritmi di collision avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
+
+Ne è un esempio il sistema anticollisione SmartDect, un dispositivo sviluppato dall'azienda italiana Elettric80 che mira a ridurre notevolmente il rischio di collisioni tra Automated Guided Vehicles (AGVs) e operatori\cite{fonte9}.
+Questo sistema prevede un dispositivo indossabile con tecnologia Ultra-Wide Band (UWB) che sarà indossato dagli operatori o posizionato sui veicoli a guida manuale.
+Questo dispositivo comunica in tempo reale la posizione degli operatori ai veicoli a guida automatica, facilitando in questo modo la prevenzione della collisione.
+Il dispositivo indossabile ha inoltre un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore\cite{fonte10}.
 
 \section{Obbiettivo di questo progetto}
 L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
@@ -135,7 +149,7 @@ Nel caso qui presentato questa modalità è stata utilizzata per fornire il risu
 \subsection{stage\_ros}
 Questo package è stato utilizzato per la simulazione del robot e dell'ambiente circostante, compresi i vari ostacoli:
 
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
     \includegraphics[height=30em]{stage_ros.png}
     \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obbiettivo (il quadrato rosso)}
@@ -151,6 +165,16 @@ RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presen
     \caption{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)}
     \label{fig:rviz}
 \end{figure}
+
+\subsection{teleop\_twist\_keyboard}
+Questo tool fornito da ROS permette di inviare dei comandi di movimento su uno specifico topic (di default \textbf{cmd\_vel}) utilizzando alcuni tasti.
+\begin{figure}[H]
+    \centering
+    \includegraphics[height=20em]{rviz.png}
+    \caption{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)}
+    \label{fig:teleop}
+\end{figure}
+È stato utilizzato per effettuare dei test manuali sull'algoritmo.
 
 \section{Artificial Potential Field}
 \subsection{Teoria}
@@ -433,6 +457,7 @@ def callback(self, msg):
         angle = math.atan2(-y, -x)
         force = ForceResponse(magnitude, angle)
         self.set_net_force(force)
+    self.show_force()
 \end{lstlisting}
 
 La funzione \textbf{set\_net\_force} si occuperà quindi di calcolare progressivamente la risultante delle varie forze calcolate dalla callback e di salvare il risultato nella variabile \textbf{force}:
@@ -684,7 +709,11 @@ Questo evidenzia la capacità degli algoritmi di local motion control (come ad e
 È stato tuttavia messo in evidenza quanto sia importante la scelta dei parametri per il corretto funzionamento dell'algoritmo, che va effettuata a seguito di test e simulazioni.
 Questi parametri potrebbero infatti cambiare in base all'applicazione che si deve fare dell'algoritmo.
 
-Nonostante l'importanza di questo tipo di algoritmi, è stato tuttavia possibile notare le loro limitazioni e la necessità di associarli con algoritmi di global path planning e SLAM (Simultaneus Localization and Mapping), per avere una accuratezza e delle prestazioni migliori.
+Nonostante l'importanza di questo tipo di algoritmi, è stato tuttavia possibile notare le loro limitazioni e la necessità di associarli con algoritmi di global path planning (come ad esempio gli algoritmi A* e D*) e SLAM (Simultaneus Localization and Mapping), per avere una accuratezza e delle prestazioni migliori.
+
+Oltre alla combinazione di algoritmi diversi, combinare le informazioni di più sensori rende più preciso il rilevamento degli ostacoli, diminuendo così i rischi.
+A dimostrazione di ciò si può notare che le implementazioni presentate all'inizio fanno spesso uso di più sensori.
+Per quanto riguarda le automobili vengono usate le informazioni raccolte da radar, laser e camere, mentre per quanto riguarda l'esempio di SmartDect, ai tradizionali sistemi anticollisione sono state aggiunte maggiori informazioni provenienti dai dispositivi UWB.
 
 \bibliographystyle{plain}
 \bibliography{bibliografia.bib}
