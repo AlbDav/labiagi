@@ -1,12 +1,12 @@
 # Fdb version 3
-["bibtex tesi"] 1632759342 "tesi.aux" "tesi.bbl" "tesi" 1632759347
+["bibtex tesi"] 1632818459 "tesi.aux" "tesi.bbl" "tesi" 1632818465
   "/usr/local/texlive/2021/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "bibliografia.bib" 1632759103 1115 eda657832e9742154acfea01e5f336a1 ""
-  "tesi.aux" 1632759346 8501 b04002d75dd39d7174cae55175f9e4b8 "pdflatex"
+  "bibliografia.bib" 1632818277 1272 3f09ab413baef67e2060db7bffa4fee6 ""
+  "tesi.aux" 1632818464 8869 4648f5625c2acc9afb11080f46c151e8 "pdflatex"
   (generated)
   "tesi.bbl"
   "tesi.blg"
-["pdflatex"] 1632759342 "/Users/utente/Progetti/labiagi/tesi/tesi.tex" "/Users/utente/Progetti/labiagi/tesi/tesi.pdf" "tesi" 1632759347
+["pdflatex"] 1632818460 "/Users/utente/Progetti/labiagi/tesi/tesi.tex" "/Users/utente/Progetti/labiagi/tesi/tesi.pdf" "tesi" 1632818465
   "./img//rviz.png" 1632731367 137130 4c7eee2672e833bb6f37d96795d7bd5e ""
   "./img//rviz_force1.png" 1632731367 196344 39a0059c86c26b5c0cd390e7893110af ""
   "./img//rviz_force2.png" 1632731367 195130 44940b84153726b2e79c3e815adcfb85 ""
@@ -14,8 +14,8 @@
   "./img//rviz_force4.png" 1632756778 197220 631a61a364582fb537e259fec4110045 ""
   "./img//rviz_force5.png" 1632756782 196409 e7ed8301262c93928abf6fdd1fbaf221 ""
   "./img//stage_ros.png" 1632731367 33840 be09fe2118f20a2308d37aa7531e1dd9 ""
-  "/Users/utente/Progetti/labiagi/tesi/tesi.aux" 1632759346 8501 b04002d75dd39d7174cae55175f9e4b8 ""
-  "/Users/utente/Progetti/labiagi/tesi/tesi.tex" 1632759330 27535 ca246cd8e2c48740cfbdfe1ccf225345 ""
+  "/Users/utente/Progetti/labiagi/tesi/tesi.aux" 1632818464 8869 4648f5625c2acc9afb11080f46c151e8 ""
+  "/Users/utente/Progetti/labiagi/tesi/tesi.tex" 1632818452 34407 08bfdc0ec41b01a1f4018c549876aed0 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -196,16 +196,16 @@
   "img//rviz_force4.png" 1632756778 197220 631a61a364582fb537e259fec4110045 ""
   "img//rviz_force5.png" 1632756782 196409 e7ed8301262c93928abf6fdd1fbaf221 ""
   "img//stage_ros.png" 1632731367 33840 be09fe2118f20a2308d37aa7531e1dd9 ""
-  "tesi.aux" 1632759346 8501 b04002d75dd39d7174cae55175f9e4b8 "pdflatex"
-  "tesi.bbl" 1632759342 1056 be7408e270c950bc5441f9301026908d "bibtex tesi"
-  "tesi.out" 1632759346 4734 8fe771ee20b1fa55b3ed37331a96deef "pdflatex"
-  "tesi.tex" 1632759330 27535 ca246cd8e2c48740cfbdfe1ccf225345 ""
-  "tesi.toc" 1632759346 2532 74358cc27f06bc5d24d028cfb067e8d1 "pdflatex"
+  "tesi.aux" 1632818464 8869 4648f5625c2acc9afb11080f46c151e8 "pdflatex"
+  "tesi.bbl" 1632818460 1196 f7f509dad32177849d9741b2ac631b77 "bibtex tesi"
+  "tesi.out" 1632818464 4962 892907ff6c104b58fa0a06895b61ff08 "pdflatex"
+  "tesi.tex" 1632818452 34407 08bfdc0ec41b01a1f4018c549876aed0 ""
+  "tesi.toc" 1632818464 2739 2ae4f0f6b57ae41682d8143c3798d596 "pdflatex"
   (generated)
-  "tesi.out"
-  "/Users/utente/Progetti/labiagi/tesi/tesi.pdf"
   "tesi.log"
+  "/Users/utente/Progetti/labiagi/tesi/tesi.pdf"
+  "tesi.out"
+  "tesi.pdf"
+  "/Users/utente/Progetti/labiagi/tesi/tesi.log"
   "tesi.toc"
   "tesi.aux"
-  "/Users/utente/Progetti/labiagi/tesi/tesi.log"
-  "tesi.pdf"

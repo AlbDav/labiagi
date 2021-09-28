@@ -8,6 +8,10 @@ http://docs.ros.org/en/noetic/api/geometry\_msgs/html/msg/Twist.html.
 http://docs.ros.org/en/noetic/api/sensor\_msgs/html/msg/LaserScan.html.
 \newblock sensor\_msgs/laserscan message.
 
+\bibitem{fonte7}
+http://docs.ros.org/en/noetic/api/visualization\_msgs/html/msg/Marker.html.
+\newblock visualization\_msgs/marker message.
+
 \bibitem{fonte1}
 Prof. Marcello~Chiaberge Lorenzo~Galtarossa.
 \newblock Obstacle avoidance algorithms for autonomous navigation system in
