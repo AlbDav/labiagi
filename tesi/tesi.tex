@@ -48,34 +48,37 @@ escapeinside={\%*}{*)}
 L'obbiettivo di questo lavoro è l'implementazionie di un sistema che permetta a un robot di muoversi all'interno di un ambiente evitando eventuali ostacoli.
 Il robot preso in considerazione non conosce l'ambiente in cui dovrà muoversi e può quindi basarsi soltanto sulle rilevazioni fatte tramite un laser scanner.
 
-Per l'implementazione è stato usato ROS (Robot Operating System), un framework open source usato per gestire le operazioni e le cominucazioni dei vari nodi di un robot.
+Per l'implementazione è stato usato ROS (Robot Operating System), un framework open source pensato per gestire le operazioni e le cominucazioni dei vari nodi di un robot.
 Per la simulazione è stato usato il pacchetto stage\_ros, mentre per la visualizzazione delle informazioni dei vari sensori e della traiettoria calcolata dal robot è stato usato il tool RVIZ.
 
-Data l'assenza di informazioni iniziali riguardo alla mappa è stata necessario scegliere un algoritmo di local motion planning.
+Data l'assenza di informazioni iniziali riguardo alla mappa è stata necessario scegliere un algoritmo di local motion control.
 In particolare è stato scelto il metodo dell'Artificial Potential Field, che è spesso usato per la sua semplicità sia dal punto di vista dello sviluppo sia dal punto di vista computazionale.
 \end{abstract}
 \tableofcontents
 
 \chapter{Introduzione}
 \section{Formulazione problema}
-Lo sviluppo di robot mobili a navigazione autonoma si suddivide in due parti: global path planning e local motion control.
-Il global path planning utilizza le informazioni che si hanno sulla mappa per trovare il percorso più corto per andare dal punto di partenza all'obbiettivo.
+Lo sviluppo di algoritmi di navigazione autonoma per robot mobili si suddivide in due parti\cite{fonte1}:
+\begin{description}
+	\item[global path planning] Algoritmi che utilizzano le informazioni che si hanno sulla mappa per trovare il percorso più corto per andare dal punto di partenza all'obbiettivo.
+	\item[local motion control] Algoritmi che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
+\end{description}
 
-Tuttavia può capitare che le informazioni sull'ambiente in cui il robot dovrà muoversi siano scarse, non aggiornate o mancanti.
-Questo porta alla necessità di sviluppare algoritmi di local motion control, che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
-\cite{fonte1}
+La necessità degli algoritmi di local motion control nasce nel momento in cui le informazioni sulla mappa sono incomplete o possono essere soggette a cambiamenti, come avviene in ambienti dinamici con ostacoli in movimento.
+Tutti gli algoritmi di local motion control hanno quindi il fine di condurre il robot verso un obbiettivo e scegliere in tempo reale un percorso che sia il più possibile libero da ostacoli.
 
 \section{Importanza della Collision Avoidance}
 In un mondo che tende sempre di più all'automazione, il problema della Collision Avoidance diventa sempre di maggiore rilievo.
-L'utilizzo principale di questo tipo di algoritmi si può trovare principalmente nel settore dei trasporti e nell'Industry 4.0.
+Gli utilizzi principali di questo tipo di algoritmi si possono trovare nel settore dei trasporti e nell'Industry 4.0.
 
 \subsection{Settore dei trasporti}
 All'interno del settore dei trasporti sono in corso molti studi dal punto di vista dei trasporti via terra.
-Sono infatti molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonomi.
+In particolare sono molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonoma.
 Questi sistemi devono dunque essere in grado di reagire a tutti i possibili imprevisti che si potrebbero incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
+
 Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune funzioni di Collsion Avoidance sono già implementate dalla maggior parte delle case automobilistiche; tra queste funzioni troviamo\cite{fonte8}:
 \begin{description}
-	\item[Adaptive Cruis Control] Questo sistema usa radar e laser per adattare la velocità in modo da mantenere la giusta distanza dal veicolo che sta davanti.
+	\item[Adaptive Cruise Control] Questo sistema usa radar e laser per adattare la velocità in modo da mantenere la giusta distanza dal veicolo che sta davanti.
 	\item[Automatic Emergency Braking (AEB)] In questo caso vengono attivati i freni per evitare una collisione o per ridurre la velocità di impatto.
 	\item[Rear Automatic Emergency Braking] I freni vengono attivati per evitare collisioni quando il veicolo sta indietreggiando.
 	\item[Electronic Stability Control (ESC)] Applica automaticamente i freni per aiutare a guidare l'auto durante una perdita di trazione. Un computer di bordo monitora vari sensori per determinare quali ruote frenare e quali accelerare.
@@ -86,13 +89,13 @@ Anche per gli spostamenti via mare e via aria sono in corso numerosi studi rigua
 
 \subsection{Industry 4.0}
 Per quanto riguarda il settore industriale, sempre più aziende stanno passando all'Industry 4.0, che prevede una automazione avanzata all'interno degli impianti produttivi.
-In fabbriche dove questi robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
-In questo caso entrano in campo gli algoritmi di collision avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
+In fabbriche dove molti robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
+In questo caso entrano in campo gli algoritmi di Collision Avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
 
 Ne è un esempio il sistema anticollisione SmartDect, un dispositivo sviluppato dall'azienda italiana Elettric80 che mira a ridurre notevolmente il rischio di collisioni tra Automated Guided Vehicles (AGVs) e operatori\cite{fonte9}.
 Questo sistema prevede un dispositivo indossabile con tecnologia Ultra-Wide Band (UWB) che sarà indossato dagli operatori o posizionato sui veicoli a guida manuale.
 Questo dispositivo comunica in tempo reale la posizione degli operatori ai veicoli a guida automatica, facilitando in questo modo la prevenzione della collisione.
-Il dispositivo indossabile ha inoltre un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore\cite{fonte10}.
+Il dispositivo indossabile ha inoltre un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare, l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore\cite{fonte10}.
 
 \section{Obbiettivo di questo progetto}
 L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
@@ -100,6 +103,7 @@ L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision 
 	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
 	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
 \end{description}
+
 Quindi, a differenza della definizione classica del problema, nel caso analizzato non avremo un obbiettivo da raggiungere ma una velocità iniziale del robot, su cui si andrà a intervenire affinché il robot non vada a sbattere.
 
 \chapter{Strumenti necessari e teoria}
@@ -123,7 +127,7 @@ I nodi possono comunicare tra loro in due modi, tramite il meccanismo Publisher/
 ROS è strutturato intorno ad un nodo master che permette ai vari nodi di essere a conoscenza della presenza di altri nodi e di comunicare.
 Il Master è un nodo unico all’interno dell’architettura di ROS e si occupa di assegnare un nome a ogni nodo connesso al sistema e di registrarlo eventualmente come Publisher, Subscriber o Service Provider.
 I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
-Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso.\cite{fonte3}
+Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso\cite{fonte3}.
 
 \subsection{Publisher/Subscriber}
 È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
@@ -151,7 +155,7 @@ Questo package è stato utilizzato per la simulazione del robot e dell'ambiente 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[height=30em]{stage_ros.png}
+    \includegraphics[width=11cm]{stage_ros.png}
     \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obbiettivo (il quadrato rosso)}
     \label{fig:stage_ros}
 \end{figure}
@@ -159,18 +163,18 @@ Questo package è stato utilizzato per la simulazione del robot e dell'ambiente 
 \subsection{RVIZ}
 RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presenti sui vari topic, come ad esempio la direzione del robot o i rilevamenti effettuati dallo scanner:
 
-\begin{figure}[htp]
+\begin{figure}[H]
     \centering
-    \includegraphics[height=20em]{rviz.png}
+    \includegraphics[width=13cm]{rviz.png}
     \caption{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)}
     \label{fig:rviz}
 \end{figure}
 
 \subsection{teleop\_twist\_keyboard}
-Questo tool fornito da ROS permette di inviare dei comandi di movimento su uno specifico topic (di default \textbf{cmd\_vel}) utilizzando alcuni tasti.
+Questo tool fornito da ROS permette di inviare dei comandi di movimento su uno specifico topic (di default \textbf{cmd\_vel}) utilizzando alcuni tasti:
 \begin{figure}[H]
     \centering
-    \includegraphics[height=20em]{rviz.png}
+    \includegraphics[width=11cm]{stage_ros.png}
     \caption{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)}
     \label{fig:teleop}
 \end{figure}
@@ -429,7 +433,13 @@ Per poter leggere queste informazioni il nodo come prima cosa si iscrive al topi
 	self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
 \end{lstlisting}
 
-Questo nodo dovrà inoltre reigstrarsi come provider del servizio \textbf{force\_service} e inizializzare la variabile \textbf{force}.
+Questo nodo dovrà inoltre registrarsi come Publisher sul topic \textbf{marker}, dove scriverà le informazioni calcolate, che verranno poi lette da RVIZ:
+
+\begin{lstlisting}
+    self.pub = rospy.Publisher('marker', Marker, queue_size=10)
+\end{lstlisting}
+
+Dovrà infine reigstrarsi come provider del servizio \textbf{force\_service} e inizializzare la variabile \textbf{force}.
 La forza risultante agente sul robot viene infatti calcolata da questo nodo, salvata nella variabile \textbf{force} e poi fornita a qualunque nodo la richieda:
 
 \begin{lstlisting}
@@ -473,6 +483,39 @@ def set_net_force(self, force):
     total_magnitude = math.sqrt(x_total ** 2 +  y_total ** 2)
     total_angle = math.atan2(y_total, x_total)
     self.force = ForceResponse(total_magnitude, total_angle)
+\end{lstlisting}
+
+Infine, tramite la funzione \textbf{show\_force}, viene creato un oggetto di tipo \textbf{Marker}, che verrà poi scritto sul topic \textbf{marker} per poi essere importato in RVIZ.
+Questo oggetto rappresenta infatti la forza risultante tramite una freccia (\lstinline{self.marker.type = 0} setta infatti la forma dell'oggetto su \lstinline{ARROW}):
+\begin{lstlisting}
+def show_force(self):
+    self.marker = Marker()
+    self.marker.header.frame_id = '/base_link'
+    self.marker.header.stamp = rospy.get_rostime()
+    self.marker.ns = 'robot'
+    self.marker.id = 0
+    self.marker.type = 0
+    self.marker.action = 0
+    self.marker.pose.position.x = 0
+    self.marker.pose.position.y = 0
+    self.marker.pose.position.z = 0
+    q = quaternion_from_euler(0, 0, self.force.angle)
+    self.marker.pose.orientation.x = q[0]
+    self.marker.pose.orientation.y = q[1]
+    self.marker.pose.orientation.z = q[2]
+    self.marker.pose.orientation.w = q[3]
+    self.marker.scale.x = self.force.magnitude
+    self.marker.scale.y = 0.05
+    self.marker.scale.z = 0.05
+
+    self.marker.color.r = 0.0
+    self.marker.color.g = 1.0
+    self.marker.color.b = 0.0
+    self.marker.color.a = 1.0
+
+    self.marker.lifetime = rospy.Duration(0)
+
+    self.pub.publish(self.marker)
 \end{lstlisting}
 
 \subsection{cmd\_vel\_controller}
