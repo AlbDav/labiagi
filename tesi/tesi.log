@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.22)  29 SEP 2021 22:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.22)  30 SEP 2021 17:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -627,66 +627,78 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 Capitolo 1.
 [5
 
-] [6] [7]
+]
+<./img//driverless_car.png, id=212, 772.8875pt x 483.8075pt>
+File: ./img//driverless_car.png Graphic file (type png)
+<use ./img//driverless_car.png>
+Package pdftex.def Info: ./img//driverless_car.png  used on input line 92.
+(pdftex.def)             Requested size: 355.65944pt x 222.63536pt.
+ [6]
+<./img//smart_dect.png, id=221, 1204.5pt x 677.53125pt>
+File: ./img//smart_dect.png Graphic file (type png)
+<use ./img//smart_dect.png>
+Package pdftex.def Info: ./img//smart_dect.png  used on input line 109.
+(pdftex.def)             Requested size: 355.65944pt x 200.05608pt.
+ [7 </Users/utente/Progetti/labiagi/tesi/./img//driverless_car.png (PNG copy)>] [8 </Users/utente/Progetti/labiagi/tesi/./img//smart_dect.png>]
 Capitolo 2.
-[8
+[9
 
-] [9]
-<./img//stage_ros.png, id=236, 653.44125pt x 711.65875pt>
+] [10]
+<./img//stage_ros.png, id=246, 653.44125pt x 711.65875pt>
 File: ./img//stage_ros.png Graphic file (type png)
 <use ./img//stage_ros.png>
-Package pdftex.def Info: ./img//stage_ros.png  used on input line 158.
+Package pdftex.def Info: ./img//stage_ros.png  used on input line 172.
 (pdftex.def)             Requested size: 312.9803pt x 340.86476pt.
- [10 </Users/utente/Progetti/labiagi/tesi/./img//stage_ros.png>]
-<./img//rviz.png, id=245, 1287.81125pt x 892.33376pt>
+ [11 </Users/utente/Progetti/labiagi/tesi/./img//stage_ros.png>]
+<./img//rviz.png, id=254, 1287.81125pt x 892.33376pt>
 File: ./img//rviz.png Graphic file (type png)
 <use ./img//rviz.png>
-Package pdftex.def Info: ./img//rviz.png  used on input line 168.
+Package pdftex.def Info: ./img//rviz.png  used on input line 182.
 (pdftex.def)             Requested size: 369.88582pt x 256.29207pt.
 File: ./img//stage_ros.png Graphic file (type png)
 <use ./img//stage_ros.png>
-Package pdftex.def Info: ./img//stage_ros.png  used on input line 177.
+Package pdftex.def Info: ./img//stage_ros.png  used on input line 191.
 (pdftex.def)             Requested size: 312.9803pt x 340.86476pt.
- [11 </Users/utente/Progetti/labiagi/tesi/./img//rviz.png>] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 191--194
+ [12 </Users/utente/Progetti/labiagi/tesi/./img//rviz.png>] [13]
+Underfull \hbox (badness 10000) in paragraph at lines 205--208
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--211
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
 
  []
 
-[13] [14]
+[14] [15]
 Capitolo 3.
-[15
+[16
 
-] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27]
+] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27]
 Capitolo 4.
-<./img//rviz_force1.png, id=690, 2569.6pt x 1084.05pt>
+<./img//rviz_force1.png, id=676, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force1.png Graphic file (type png)
 <use ./img//rviz_force1.png>
-Package pdftex.def Info: ./img//rviz_force1.png  used on input line 702.
+Package pdftex.def Info: ./img//rviz_force1.png  used on input line 700.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force2.png, id=691, 2569.6pt x 1084.05pt>
+<./img//rviz_force2.png, id=677, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force2.png Graphic file (type png)
 <use ./img//rviz_force2.png>
-Package pdftex.def Info: ./img//rviz_force2.png  used on input line 708.
+Package pdftex.def Info: ./img//rviz_force2.png  used on input line 706.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force3.png, id=692, 2569.6pt x 1084.05pt>
+<./img//rviz_force3.png, id=678, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force3.png Graphic file (type png)
 <use ./img//rviz_force3.png>
-Package pdftex.def Info: ./img//rviz_force3.png  used on input line 714.
+Package pdftex.def Info: ./img//rviz_force3.png  used on input line 712.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force4.png, id=693, 2569.6pt x 1084.05pt>
+<./img//rviz_force4.png, id=679, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force4.png Graphic file (type png)
 <use ./img//rviz_force4.png>
-Package pdftex.def Info: ./img//rviz_force4.png  used on input line 720.
+Package pdftex.def Info: ./img//rviz_force4.png  used on input line 718.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
-<./img//rviz_force5.png, id=694, 2569.6pt x 1084.05pt>
+<./img//rviz_force5.png, id=680, 2569.6pt x 1084.05pt>
 File: ./img//rviz_force5.png Graphic file (type png)
 <use ./img//rviz_force5.png>
-Package pdftex.def Info: ./img//rviz_force5.png  used on input line 726.
+Package pdftex.def Info: ./img//rviz_force5.png  used on input line 724.
 (pdftex.def)             Requested size: 384.1122pt x 162.03807pt.
 [28
 
@@ -716,18 +728,18 @@ Package rerunfilecheck Info: File `tesi.out' has not changed.
 (rerunfilecheck)             Checksum: 14AB3812996B119291BCC64BAC9638C5;5135.
  ) 
 Here is how much of TeX's memory you used:
- 17169 strings out of 478994
- 257771 string characters out of 5858184
- 1041795 words of memory out of 5000000
- 33703 multiletter control sequences out of 15000+600000
- 518963 words of font info for 207 fonts, out of 8000000 for 9000
+ 17176 strings out of 478994
+ 257954 string characters out of 5858184
+ 1053795 words of memory out of 5000000
+ 33715 multiletter control sequences out of 15000+600000
+ 519411 words of font info for 212 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,131p,416b,1899s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb>
-Output written on /Users/utente/Progetti/labiagi/tesi/tesi.pdf (36 pages, 1486136 bytes).
+Output written on /Users/utente/Progetti/labiagi/tesi/tesi.pdf (36 pages, 2645765 bytes).
 PDF statistics:
- 903 PDF objects out of 1000 (max. 8388607)
- 824 compressed objects within 9 object streams
- 428 named destinations out of 1000 (max. 500000)
- 69937 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 886 PDF objects out of 1000 (max. 8388607)
+ 804 compressed objects within 9 object streams
+ 411 named destinations out of 1000 (max. 500000)
+ 69947 words of extra memory for PDF output out of 74296 (max. 10000000)
 

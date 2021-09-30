@@ -72,9 +72,9 @@ In un mondo che tende sempre di più all'automazione, il problema della Collisio
 Gli utilizzi principali di questo tipo di algoritmi si possono trovare nel settore dei trasporti e nell'Industry 4.0.
 
 \subsection{Settore dei trasporti}
-All'interno del settore dei trasporti sono in corso molti studi dal punto di vista dei trasporti via terra.
+All'interno del settore dei trasporti sono in corso numerosi studi dal punto di vista dei trasporti via terra.
 In particolare sono molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonoma.
-Questi sistemi devono dunque essere in grado di reagire a tutti i possibili imprevisti che si potrebbero incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
+Questi sistemi devono tra le altre cose essere in grado di reagire a tutti gli imprevisti che si possono normalmente incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
 
 Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune funzioni di Collsion Avoidance sono già implementate dalla maggior parte delle case automobilistiche; tra queste funzioni troviamo\cite{fonte8}:
 \begin{description}
@@ -87,21 +87,35 @@ Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune
 
 Anche per gli spostamenti via mare e via aria sono in corso numerosi studi riguardanti la navigazione autonoma, con particolare interesse per i droni sottomarini (UUV) e aerei (UAV).
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12.5cm]{driverless_car.png}
+    \caption{In questa immagine si possono vedere i sensori che sono necessari per poter avere un'auto a guida completamente autonoma.}
+    \label{fig:driverless_car}
+\end{figure}
+
 \subsection{Industry 4.0}
 Per quanto riguarda il settore industriale, sempre più aziende stanno passando all'Industry 4.0, che prevede una automazione avanzata all'interno degli impianti produttivi.
-In fabbriche dove molti robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
-In questo caso entrano in campo gli algoritmi di Collision Avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
+In fabbriche dove più robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
+In questo caso entrano in campo i sistemi di Collision Avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
 
-Ne è un esempio il sistema anticollisione SmartDect, un dispositivo sviluppato dall'azienda italiana Elettric80 che mira a ridurre notevolmente il rischio di collisioni tra Automated Guided Vehicles (AGVs) e operatori\cite{fonte9}.
+Ne è un esempio il sistema anticollisione SmartDect, un dispositivo sviluppato dall'azienda italiana Elettric80 che mira a ridurre notevolmente il rischio di collisioni tra Automated Guided Vehicles (AGVs) e i dipendenti\cite{fonte9}.
 Questo sistema prevede un dispositivo indossabile con tecnologia Ultra-Wide Band (UWB) che sarà indossato dagli operatori o posizionato sui veicoli a guida manuale.
-Questo dispositivo comunica in tempo reale la posizione degli operatori ai veicoli a guida automatica, facilitando in questo modo la prevenzione della collisione.
-Il dispositivo indossabile ha inoltre un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare, l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore\cite{fonte10}.
+Questo dispositivo comunica in tempo reale la sua posizione ai veicoli a guida automatica, facilitando in questo modo la prevenzione della collisione.
+Questo sistema è dotato inoltre di un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare, l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore\cite{fonte10}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12.5cm]{smart_dect.png}
+    \caption{Questa immagine mostra il funzionamento della comunicazione tra il dispositivo SmartDect e un veicolo a guida autonoma che si trova nei paraggi.}
+    \label{fig:smart_dect}
+\end{figure}
 
 \section{Obbiettivo di questo progetto}
 L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
 \begin{description}
 	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
-	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da collisioni.
+	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da ostacoli.
 \end{description}
 
 Quindi, a differenza della definizione classica del problema, nel caso analizzato non avremo un obbiettivo da raggiungere ma una velocità iniziale del robot, su cui si andrà a intervenire affinché il robot non vada a sbattere.
@@ -125,7 +139,7 @@ Il software viene organizzato in packages. Ogni package può contenere più eseg
 I nodi possono comunicare tra loro in due modi, tramite il meccanismo Publisher/Subscriber oppure tramite il meccanismo dei Services.
 
 ROS è strutturato intorno ad un nodo master che permette ai vari nodi di essere a conoscenza della presenza di altri nodi e di comunicare.
-Il Master è un nodo unico all’interno dell’architettura di ROS e si occupa di assegnare un nome a ogni nodo connesso al sistema e di registrarlo eventualmente come Publisher, Subscriber o Service Provider.
+Il master è un nodo unico all’interno dell’architettura di ROS e si occupa di assegnare un nome a ogni nodo connesso al sistema e di registrarlo eventualmente come Publisher, Subscriber o Service Provider.
 I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
 Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso\cite{fonte3}.
 
@@ -134,7 +148,7 @@ Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo c
 La scrittura di un messaggio avviene su di un topic dai nodi di tipo Publisher e tutti i nodi di tipo Subscriber che desiderano ricevere tale messaggio possono iscriversi a quel topic.
 Per uno stesso topic possono esserci più Publisher e più Subscriber.
 
-Il messaggio è una struttura dati con diversi campi che possono essere di tipi diversi (sono supportati tutti i tipi standard primitivi integer, floating point, boolean, array e costanti).
+Il messaggio è una struttura dati con diversi campi che possono essere di tipi diversi (sono supportati tutti i tipi standard primitivi come integer, float, double, boolean e string).
 All’interno di un topic è possibile scrivere o leggere solo un tipo di messaggio.
 La definizione dei vari tipi di messaggi viene memorizzata in file .msg.
 
@@ -156,7 +170,7 @@ Questo package è stato utilizzato per la simulazione del robot e dell'ambiente 
 \begin{figure}[H]
     \centering
     \includegraphics[width=11cm]{stage_ros.png}
-    \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obbiettivo (il quadrato rosso)}
+    \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obbiettivo (il quadrato rosso).}
     \label{fig:stage_ros}
 \end{figure}
 
@@ -267,7 +281,7 @@ Infatti tramite $\omega$ facciamo ruotare il robot nella direzione della forza r
 Per questo progetto sono stati sviluppati tre nodi ROS:
 \begin{description}
 	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input.
-	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati su tali informazioni.
+	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati su tali informazioni, per poi fornirli tramite un servizio.
 	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection.
 \end{description}
 
@@ -323,18 +337,13 @@ Il nodo andrà quindi a chiamare la funzione \textbf{move}, che scriverà sul to
 \begin{lstlisting}
 def move(self):
     vel_msg = Twist()
-    vel_msg.linear.x = 0
-    vel_msg.linear.y = 0
-    vel_msg.linear.z = 0
-    vel_msg.angular.x = 0
-    vel_msg.angular.y = 0
+    ...
     vel_msg.angular.z = -5 + random() * 10
     self.pub.publish(vel_msg)
     vel_msg.angular.z = 0
     while not rospy.is_shutdown():
         vel_msg.linear.x = random() * 10
         self.pub.publish(vel_msg)
-        self.pub = rospy.Publisher('/cmd_vel_input', Twist, queue_size=10)
 \end{lstlisting}
 In questo modo il robot partirà con una direzione iniziale sempre diversa e poi continuerà ad andare avanti con velocità diverse.
 
@@ -470,7 +479,7 @@ def callback(self, msg):
     self.show_force()
 \end{lstlisting}
 
-La funzione \textbf{set\_net\_force} si occuperà quindi di calcolare progressivamente la risultante delle varie forze calcolate dalla callback e di salvare il risultato nella variabile \textbf{force}:
+La funzione \textbf{set\_net\_force} si occuperà quindi di calcolare progressivamente la risultante delle varie forze analizzate dalla callback e di salvare il risultato nella variabile \textbf{force}:
 
 \begin{lstlisting}
 def set_net_force(self, force):
@@ -485,35 +494,31 @@ def set_net_force(self, force):
     self.force = ForceResponse(total_magnitude, total_angle)
 \end{lstlisting}
 
-Infine, tramite la funzione \textbf{show\_force}, viene creato un oggetto di tipo \textbf{Marker}, che verrà poi scritto sul topic \textbf{marker} per poi essere importato in RVIZ.
-Questo oggetto rappresenta infatti la forza risultante tramite una freccia (\lstinline{self.marker.type = 0} setta infatti la forma dell'oggetto su \lstinline{ARROW}):
+Infine, all'interno della funzione \textbf{show\_force}, viene creato un oggetto di tipo \textbf{Marker}, che verrà pubblicato sul topic \textbf{marker} per poi essere importato in RVIZ.
+Questo oggetto rappresenta la forza risultante tramite una freccia settando \lstinline{self.marker.type = 0}.
+Viene usato quindi l'angolo della forza per calcolare l'orientamento della freccia e il modulo per calcolarne la lunghezza.
+Infine viene scelto il colore della freccia (verde in questo caso) e viene pubblicato il marker sul topic:
+
 \begin{lstlisting}
 def show_force(self):
     self.marker = Marker()
-    self.marker.header.frame_id = '/base_link'
-    self.marker.header.stamp = rospy.get_rostime()
-    self.marker.ns = 'robot'
-    self.marker.id = 0
+    ...
     self.marker.type = 0
-    self.marker.action = 0
-    self.marker.pose.position.x = 0
-    self.marker.pose.position.y = 0
-    self.marker.pose.position.z = 0
+    ...
     q = quaternion_from_euler(0, 0, self.force.angle)
     self.marker.pose.orientation.x = q[0]
     self.marker.pose.orientation.y = q[1]
     self.marker.pose.orientation.z = q[2]
     self.marker.pose.orientation.w = q[3]
     self.marker.scale.x = self.force.magnitude
-    self.marker.scale.y = 0.05
-    self.marker.scale.z = 0.05
+    ...
 
     self.marker.color.r = 0.0
     self.marker.color.g = 1.0
     self.marker.color.b = 0.0
     self.marker.color.a = 1.0
 
-    self.marker.lifetime = rospy.Duration(0)
+    ...
 
     self.pub.publish(self.marker)
 \end{lstlisting}
@@ -550,7 +555,6 @@ class cmdVelController:
             vel_msg.angular.x = 0
             vel_msg.angular.y = 0
             vel_msg.angular.z = msg.angular.z + force.angle
-            print(vel_msg)
             self.pub.publish(vel_msg)
         except rospy.ServiceException as e:
             print('Service call failed: %s' %e)
@@ -582,9 +586,7 @@ Infine invierà il messaggio sul topic \textbf{cmd\_vel}, che corrisponde al top
 
 \begin{lstlisting}
 def callback(self, msg):
-    if msg.linear.x == 0:
-        self.pub.publish(msg)
-        return
+    ...
     rospy.wait_for_service('force_service')
     try:
         force_service = rospy.ServiceProxy('force_service', Force)
@@ -592,12 +594,8 @@ def callback(self, msg):
         vel_msg = Twist()
         x_linear = msg.linear.x + force.magnitude
         vel_msg.linear.x = x_linear if x_linear < 0.75 else 0.75
-        vel_msg.linear.y = 0
-        vel_msg.linear.z = 0
-        vel_msg.angular.x = 0
-        vel_msg.angular.y = 0
+        ...
         vel_msg.angular.z = msg.angular.z + force.angle
-        print(vel_msg)
         self.pub.publish(vel_msg)
     except rospy.ServiceException as e:
         print('Service call failed: %s' %e)
