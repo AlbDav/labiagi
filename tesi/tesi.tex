@@ -9,7 +9,8 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{float}
-\hypersetup{pdftitle={Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field},pdfauthor={Davide Albano}}
+\usepackage{xurl}
+\hypersetup{pdftitle={Collision Avoidance per Robot Mobili},pdfauthor={Davide Albano}}
 \linespread{1.5}
 \graphicspath{{./img/}}
 \lstset{
@@ -31,7 +32,7 @@ breakatwhitespace=false,
 escapeinside={\%*}{*)}
 }
 
-\title{Sviluppo di un sistema di Collision Avoidance tramite il metodo dell'Artificial Potential Field}
+\title{Collision Avoidance per Robot Mobili}
 \author{Davide Albano}
 \IDnumber{1708530}
 \course{Ingegneria Informatica e Automatica}
@@ -65,7 +66,8 @@ Lo sviluppo di algoritmi di navigazione autonoma per robot mobili si suddivide i
 \end{description}
 
 La necessità degli algoritmi di local motion control nasce nel momento in cui le informazioni sulla mappa sono incomplete o possono essere soggette a cambiamenti, come avviene in ambienti dinamici con ostacoli in movimento.
-Tutti gli algoritmi di local motion control hanno quindi il fine di condurre il robot verso un obbiettivo e scegliere in tempo reale un percorso che sia il più possibile libero da ostacoli.
+Tutti gli algoritmi di local motion control hanno quindi il fine di condurre il robot verso un obbiettivo valutando in ogni istante di tempo il percorso più sicuro.
+A differenza degli algoritmi di global path planning non hanno una parte di pre-pianificazione ma si basano soltanto sulla pianificazione online.
 
 \section{Importanza della Collision Avoidance}
 In un mondo che tende sempre di più all'automazione, il problema della Collision Avoidance diventa sempre di maggiore rilievo.
@@ -85,7 +87,7 @@ Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune
 	\item[Parking Assist] I feedback delle telecamere e dei sensori vengono combinati per consentire al veicolo di sterzare in un parcheggio mentre il conducente controlla la velocità.
 \end{description} 
 
-Anche per gli spostamenti via mare e via aria sono in corso numerosi studi riguardanti la navigazione autonoma, con particolare interesse per i droni sottomarini (UUV) e aerei (UAV).
+Anche per gli spostamenti via mare e via aria sono in corso studi riguardanti la navigazione autonoma, con particolare interesse per i droni sottomarini (UUV) e aerei (UAV).
 
 \begin{figure}[H]
     \centering
@@ -117,7 +119,6 @@ L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision 
 	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
 	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da ostacoli.
 \end{description}
-
 Quindi, a differenza della definizione classica del problema, nel caso analizzato non avremo un obbiettivo da raggiungere ma una velocità iniziale del robot, su cui si andrà a intervenire affinché il robot non vada a sbattere.
 
 \chapter{Strumenti necessari e teoria}
@@ -145,7 +146,7 @@ Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo c
 
 \subsection{Publisher/Subscriber}
 È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
-La scrittura di un messaggio avviene su di un topic dai nodi di tipo Publisher e tutti i nodi di tipo Subscriber che desiderano ricevere tale messaggio possono iscriversi a quel topic.
+La scrittura di un messaggio avviene su un topic da parte dei nodi di tipo Publisher e tutti i nodi di tipo Subscriber che desiderano ricevere tale messaggio possono iscriversi a quel topic.
 Per uno stesso topic possono esserci più Publisher e più Subscriber.
 
 Il messaggio è una struttura dati con diversi campi che possono essere di tipi diversi (sono supportati tutti i tipi standard primitivi come integer, float, double, boolean e string).
@@ -153,6 +154,7 @@ All’interno di un topic è possibile scrivere o leggere solo un tipo di messag
 La definizione dei vari tipi di messaggi viene memorizzata in file .msg.
 
 Nello sviluppo successivamente illustrato questo meccanismo di comunicazione è stato utilizzato per leggere le informazioni inviate dal laser scanner e la velocità in input e per scrivere in output la velocità ricalcolata in base agli ostacoli presenti.
+Sono stati usati i messaggi anche per pubblicare su un topic che è stato poi importato in RVIZ per visualizzare le informazioni sulla forza calcolata.
 
 \subsection{Services}
 Questa modalità di comunicazione tra nodi è invece sincrona e usa la semantica Request/Response.
@@ -188,8 +190,8 @@ RVIZ è stato molto utile per visualizzare in tempo reale le informazioni presen
 Questo tool fornito da ROS permette di inviare dei comandi di movimento su uno specifico topic (di default \textbf{cmd\_vel}) utilizzando alcuni tasti:
 \begin{figure}[H]
     \centering
-    \includegraphics[width=11cm]{stage_ros.png}
-    \caption{Schermata di RVIZ in cui sono state caricate le informazioni dello scanner (i tratti rossi) e della direzione del robot (la freccia rossa)}
+    \includegraphics[width=13cm]{teleop.png}
+    \caption{Dopo aver lanciato il comando per far partire \textbf{teleop\_twist\_keyboard} il programma ci mostra una legenda dei tasti da cliccare per mandare al robot determinati comandi di movimento.}
     \label{fig:teleop}
 \end{figure}
 È stato utilizzato per effettuare dei test manuali sull'algoritmo.
@@ -202,7 +204,7 @@ Quest'ultimo metodo è stato scelto per l'implementazione del progetto.
 Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obbiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
 Il potenziale totale $U$ sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo $-\nabla U(q)$ indicherà la traiettoria più sicura.
 
-Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obbiettivo: conico quando il robot è lontano, paraboidale quando è vicino.
+Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obbiettivo $\boldsymbol{q}_{g}$: conico quando il robot è lontano, paraboidale quando è vicino.
 In questo modo la formula per il calcolo della campo attrattivo diventa:
 \newline
 $$
@@ -215,7 +217,7 @@ $$
 dove $\boldsymbol{e}=\boldsymbol{q}_{g}-\boldsymbol{q}$, $k_{a}>0$ e $k_{b}>0$.
 Per la continuità della funzione è necessario inoltre che:
 $$
-k_{a} e(\boldsymbol{q})=k_{b} \frac{\boldsymbol{e}(\boldsymbol{q})}{\|\boldsymbol{e}(\boldsymbol{q})\|} \quad \text { for } \quad\|\boldsymbol{e}(\boldsymbol{q})\|=\rho
+k_{a} \boldsymbol{e}(\boldsymbol{q})=k_{b} \frac{\boldsymbol{e}(\boldsymbol{q})}{\|\boldsymbol{e}(\boldsymbol{q})\|} \quad \text { for } \quad\|\boldsymbol{e}(\boldsymbol{q})\|=\rho
 $$
 \newline
 e quindi $k_{b}=\rho k_{a}$.
@@ -256,7 +258,7 @@ v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
 \omega=f_{t, \theta}
 \end{array}
 $$
-dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento \cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo\cite{fonte2}:
+dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento\cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo\cite{fonte2}:
 
 $$
 f_{t, \theta}=k_{\theta}\left(\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)-\theta\right)
@@ -292,7 +294,6 @@ Per questo progetto sono stati sviluppati tre nodi ROS:
 import rospy
 from geometry_msgs.msg import Twist
 from random import random
-from time import sleep
 
 class twistGenerator:
     def __init__(self):
@@ -329,10 +330,10 @@ if __name__ == '__main__':
 Per poter scrivere sul topic di input della velocità \textbf{cmd\_vel\_input}, questo nodo deve innanzitutto registrarsi come Publisher su quel topic:
 
 \begin{lstlisting}
-	self.pub = rospy.Publisher('/cmd_vel_input', Twist, queue_size=10)
+    self.pub = rospy.Publisher('/cmd_vel_input', Twist, queue_size=10)
 \end{lstlisting}
 
-Il nodo andrà quindi a chiamare la funzione \textbf{move}, che scriverà sul topic un messaggio con una velocità angolare casuale e poi inizierà a inviare una serie di messaggi con velocità lineare casuale:
+Il nodo andrà quindi a chiamare la funzione \textbf{move}, che scriverà sul topic un primo messaggio con una velocità angolare casuale e poi inizierà a inviare una serie di messaggi con velocità lineare casuale:
 
 \begin{lstlisting}
 def move(self):
@@ -345,7 +346,7 @@ def move(self):
         vel_msg.linear.x = random() * 10
         self.pub.publish(vel_msg)
 \end{lstlisting}
-In questo modo il robot partirà con una direzione iniziale sempre diversa e poi continuerà ad andare avanti con velocità diverse.
+In questo modo il robot partirà con una direzione iniziale sempre diversa e poi continuerà ad andare avanti con velocità scelte in modo randomico.
 
 \subsection{obstacle\_detection}
 \begin{lstlisting}
@@ -353,7 +354,6 @@ In questo modo il robot partirà con una direzione iniziale sempre diversa e poi
 
 import rospy
 from sensor_msgs.msg import LaserScan
-import time
 import math
 from collision_avoidance.srv import Force, ForceResponse
 from visualization_msgs.msg import Marker
@@ -399,14 +399,17 @@ class obstacleDetection:
         self.marker.id = 0
         self.marker.type = 0
         self.marker.action = 0
+
         self.marker.pose.position.x = 0
         self.marker.pose.position.y = 0
         self.marker.pose.position.z = 0
+
         q = quaternion_from_euler(0, 0, self.force.angle)
         self.marker.pose.orientation.x = q[0]
         self.marker.pose.orientation.y = q[1]
         self.marker.pose.orientation.z = q[2]
         self.marker.pose.orientation.w = q[3]
+
         self.marker.scale.x = self.force.magnitude
         self.marker.scale.y = 0.05
         self.marker.scale.z = 0.05
@@ -439,7 +442,7 @@ La parte principale di questo nodo è l'analisi delle informazioni che lo scanne
 Per poter leggere queste informazioni il nodo come prima cosa si iscrive al topic, specificando la callback che deve essere chiamata appena viene scritto un nuovo messaggio:
 
 \begin{lstlisting}
-	self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
+    self.sub = rospy.Subscriber('/base_scan', LaserScan, self.callback)
 \end{lstlisting}
 
 Questo nodo dovrà inoltre registrarsi come Publisher sul topic \textbf{marker}, dove scriverà le informazioni calcolate, che verranno poi lette da RVIZ:
@@ -461,7 +464,7 @@ def force_service(self, request):
     return self.force
 \end{lstlisting}
 
-Ogni volta che lo scanner inserirà una nuova rilevazione sotto froma di messaggio nel topic \textbf{base\_scan}, verrà quindi chiamata la callback, che filtrerà i dati rilevati in base a un parametro di soglia, ne calcolerà l'equivalente forza repulsiva e infine invocherà per ogni valore calcolato la funzione \textbf{set\_net\_force}:
+Ogni volta che lo scanner inserirà una nuova rilevazione sotto froma di messaggio nel topic \textbf{base\_scan}, verrà quindi chiamata la callback, che filtrerà i dati rilevati in base a un parametro di soglia (in questo caso \lstinline{1.25}), ne calcolerà l'equivalente forza repulsiva e infine invocherà per ogni valore calcolato la funzione \textbf{set\_net\_force}:
 
 \begin{lstlisting}
 def callback(self, msg):
@@ -495,8 +498,8 @@ def set_net_force(self, force):
 \end{lstlisting}
 
 Infine, all'interno della funzione \textbf{show\_force}, viene creato un oggetto di tipo \textbf{Marker}, che verrà pubblicato sul topic \textbf{marker} per poi essere importato in RVIZ.
-Questo oggetto rappresenta la forza risultante tramite una freccia settando \lstinline{self.marker.type = 0}.
-Viene usato quindi l'angolo della forza per calcolare l'orientamento della freccia e il modulo per calcolarne la lunghezza.
+Questo oggetto rappresenta la forza risultante tramite una freccia (\lstinline{self.marker.type = 0}).
+Viene quindi usato l'angolo della forza per calcolare l'orientamento della freccia e il modulo per calcolarne la lunghezza.
 Infine viene scelto il colore della freccia (verde in questo caso) e viene pubblicato il marker sul topic:
 
 \begin{lstlisting}
@@ -505,11 +508,13 @@ def show_force(self):
     ...
     self.marker.type = 0
     ...
+
     q = quaternion_from_euler(0, 0, self.force.angle)
     self.marker.pose.orientation.x = q[0]
     self.marker.pose.orientation.y = q[1]
     self.marker.pose.orientation.z = q[2]
     self.marker.pose.orientation.w = q[3]
+
     self.marker.scale.x = self.force.magnitude
     ...
 
@@ -529,10 +534,7 @@ def show_force(self):
 
 import rospy
 from geometry_msgs.msg import Twist
-from random import random
-from time import sleep
-from collision_avoidance.srv import Force, ForceResponse
-import math
+from collision_avoidance.srv import Force
 
 class cmdVelController:
     def __init__(self):
@@ -611,7 +613,7 @@ Vector3  linear
 Vector3  angular
 \end{lstlisting}
 I messaggi di tipo Twist sono quelli che sono usati sui topic \textbf{cmd\_vel\_input} e \textbf{cmd\_vel}.
-Ogni variabile di tipo Vector3 è composta da 3 componenti (x, y e z), che in questo caso corrispondo alle componenti delle velocità lineare e angolare.
+Ogni variabile di tipo Vector3 è composta da 3 componenti, che in questo caso corrispondo alle componenti  $(x, y, z)$ delle velocità lineare e angolare.
 
 \subsection{sensor\_msgs/LaserScan.msg}
 Anche per quanto riguarda i messaggi inviati sul topic \textbf{base\_scan} è stato usato un messaggio definito nella libreria ROS\cite{fonte6}:
@@ -676,11 +678,11 @@ string mesh_resource
 bool mesh_use_embedded_materials
 \end{lstlisting}	
 
-Nel progetto questo tipo di messaggio è stato usato per visualizzare su RVIZ la freccia verda che rappresentava la risultante delle forze artificiali che agiscono sul robot in ogni istante.
+Nel progetto questo tipo di messaggio è stato usato per visualizzare su RVIZ la freccia verde che rappresentava la risultante delle forze artificiali che agiscono sul robot in ogni istante.
 
 \section{Servizi}
 \subsection{Force.srv}
-Mentre per i messaggi è stato possibile usare dei tipi già definiti nella libreria ROS, per quanto riguarda il servizio \textbf{force\_service} si è rivelato necessario definire un nuovo tipo di messaggio con le informazioni essenziali a rappresentare la forza risultante:
+Mentre per i messaggi è stato possibile usare dei tipi già definiti nella libreria ROS, per quanto riguarda il servizio \textbf{force\_service} si è rivelato necessario definire un nuovo tipo di servizio con le informazioni essenziali a rappresentare la forza risultante:
 
 \begin{lstlisting}
 ---
@@ -688,12 +690,12 @@ float64 magnitude
 float64 angle
 \end{lstlisting}
 
-Come spiegato precedentemente, le due parti del file .srv separate dai caratteri "\lstinline{---}" corrispondono rispettivamente alla Request e alla Responde del servizio.
+Come spiegato precedentemente, le due parti del file .srv separate dai caratteri "\lstinline{---}" corrispondono rispettivamente alla Request e alla Response del servizio.
 Infatti in questo caso specifico \textbf{force\_service} non prende nessun parametro di input e restituisce un oggtto con due proprietà: il modulo della forza e l'angolo che essa forma con il robot.
 
 \chapter{Esecuzione e test dell'algoritmo}
 \section{Descrizione dell'esecuzione}
-Per avere un'idea dei calcoli effettuati dall'algoritmo è stata aggiunta una parte di codice che ha la funzione di scrivere sul topic \textbf{marker} le informazioni sulla forza risultante calcolata.
+Per avere un'idea dei calcoli effettuati dall'algoritmo, come prima cosa sono state importate in RVIZ tutte le informazioni utili, comprese quelle sulla forza risultante pubblicate sul topic \textbf{marker}.
 In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in ogni istante dell'esecuzione:
 \begin{figure}[htp]
     \centering
@@ -729,34 +731,34 @@ In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in og
 \section{Analisi dei test e scelta dei parametri}
 Durante la fase di test è stato necessario valutare i seguenti parametri:
 \begin{description}
-    \item[Soglia misurazioni scanner] Questo parametro serve a decidere quanto devono essere vicini gli ostacoli per costituire un possibile problema di collisione.
-    \item[Coefficiente velocità angolare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità angolare.
-    \item[Coefficiente velocità lineare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità lineare.
+    \item[Soglia misurazioni scanner] Questo parametro serve a decidere quanto devono essere vicini gli ostacoli per costituire un possibile rischio di collisione.
+    \item[Coefficiente velocità angolare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità angolare del robot.
+    \item[Coefficiente velocità lineare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità lineare del robot.
 \end{description}
 Dopo aver svolto alcune osservazioni si è giunti a una conclusione.
 
-Per quanto riguarda il primo parametro, è stato scelto 1.25 come distanza di soglia; infatti è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano la libertà di manovra del robot, portandolo a volte a rimanere bloccato in un loop.
+Per quanto riguarda il primo parametro, è stato scelto $1.25$ come distanza di soglia; infatti è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano la libertà di manovra del robot, portandolo a volte a rimanere bloccato in un loop.
 
 Per quanto riguarda il secondo ed il terzo parametro non è stato possibile trovare una combinazione di valori adeguata in quanto si è notato che valori troppo alti della velocità lineare di output potevano sempre portare a delle collisioni.
-Si è optato quindi per limitare la velocità lineare di output a valori inferiori a 0.75, scelta che rende quasi nulla la possibilità di collisione.
+Si è optato quindi per limitare la velocità lineare di output a valori inferiori a $0.75$, scelta che rende quasi nulla la possibilità di collisione.
 Con questo valore massimo è stato possibile scegliere pari a 1 il coefficiente per la velocità angolare, che non verrà quindi attenuata.
 
 \chapter{Conclusioni}
 Durante lo svolgimento di questo progetto è stato possibile capire l'importanza che possono ricoprire nella robotica gli algoritmi di local motion control.
 Durante i test il robot è stato infatti messo in una condizione di totale assenza di informazioni riguardo alla mappa in cui era situato.
 Tutti i calcoli fatti dal robot si basavano quindi solo sulle informazioni che potevano essere raccolte in tempo reale.
-Questo evidenzia la capacità degli algoritmi di local motion control (come ad esempio quello dell'Artificial Potential Field,presentato in questo studio) di reagire prontamente a eventuali imprevisti.
+Questo evidenzia la capacità degli algoritmi di local motion control (come ad esempio quello dell'Artificial Potential Field, presentato in questo studio) di reagire prontamente a eventuali imprevisti.
 
 È stato tuttavia messo in evidenza quanto sia importante la scelta dei parametri per il corretto funzionamento dell'algoritmo, che va effettuata a seguito di test e simulazioni.
 Questi parametri potrebbero infatti cambiare in base all'applicazione che si deve fare dell'algoritmo.
 
-Nonostante l'importanza di questo tipo di algoritmi, è stato tuttavia possibile notare le loro limitazioni e la necessità di associarli con algoritmi di global path planning (come ad esempio gli algoritmi A* e D*) e SLAM (Simultaneus Localization and Mapping), per avere una accuratezza e delle prestazioni migliori.
+Nonostante l'importanza di questo tipo di algoritmi, è stato possibile notare le loro limitazioni e la loro necessità di essere associato con algoritmi di global path planning (come ad esempio gli algoritmi A* e D*) e SLAM (Simultaneus Localization and Mapping), per avere una accuratezza e delle prestazioni migliori.
 
-Oltre alla combinazione di algoritmi diversi, combinare le informazioni di più sensori rende più preciso il rilevamento degli ostacoli, diminuendo così i rischi.
-A dimostrazione di ciò si può notare che le implementazioni presentate all'inizio fanno spesso uso di più sensori.
-Per quanto riguarda le automobili vengono usate le informazioni raccolte da radar, laser e camere, mentre per quanto riguarda l'esempio di SmartDect, ai tradizionali sistemi anticollisione sono state aggiunte maggiori informazioni provenienti dai dispositivi UWB.
+Oltre alla combinazione di algoritmi diversi, combinare le informazioni di più sensori rende più preciso il rilevamento degli ostacoli, diminuendo ancora di più i rischi.
+A dimostrazione di ciò si può notare come le implementazioni presentate all'inizio facciano spesso uso di più sensori.
+Per quanto riguarda le automobili vengono infatti usate le informazioni raccolte da radar, laser e camere, mentre per quanto riguarda l'esempio di SmartDect, ai tradizionali sistemi anticollisione sono state aggiunte maggiori informazioni provenienti dai dispositivi UWB.
 
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{bibliografia.bib}
 
 \end{document}
