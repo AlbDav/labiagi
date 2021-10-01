@@ -46,28 +46,28 @@ escapeinside={\%*}{*)}
 \begin{document}
 \maketitle
 \begin{abstract}
-L'obbiettivo di questo lavoro è l'implementazionie di un sistema che permetta a un robot di muoversi all'interno di un ambiente evitando eventuali ostacoli.
+L'obiettivo di questo lavoro è la realizzazione di un sistema che permetta a un robot di muoversi all'interno di un ambiente evitando eventuali ostacoli.
 Il robot preso in considerazione non conosce l'ambiente in cui dovrà muoversi e può quindi basarsi soltanto sulle rilevazioni fatte tramite un laser scanner.
 
-Per l'implementazione è stato usato ROS (Robot Operating System), un framework open source pensato per gestire le operazioni e le cominucazioni dei vari nodi di un robot.
+Per l'implementazione è stato usato ROS (Robot Operating System), un framework open source pensato per gestire le operazioni e le comunicazioni dei vari nodi di un robot.
 Per la simulazione è stato usato il pacchetto stage\_ros, mentre per la visualizzazione delle informazioni dei vari sensori e della traiettoria calcolata dal robot è stato usato il tool RVIZ.
 
 Data l'assenza di informazioni iniziali riguardo alla mappa è stata necessario scegliere un algoritmo di local motion control.
-In particolare è stato scelto il metodo dell'Artificial Potential Field, che è spesso usato per la sua semplicità sia dal punto di vista dello sviluppo sia dal punto di vista computazionale.
+In particolare, è stato scelto il metodo dell'Artificial Potential Field, che è spesso usato per la sua semplicità sia dal punto di vista dello sviluppo sia dal punto di vista computazionale.
 \end{abstract}
 \tableofcontents
 
 \chapter{Introduzione}
 \section{Formulazione problema}
-Lo sviluppo di algoritmi di navigazione autonoma per robot mobili si suddivide in due parti\cite{fonte1}:
+Lo sviluppo di algoritmi di navigazione autonoma per robot mobili deve affrontare due problematichee quindi si suddivide in due parti \cite{fonte1}:
 \begin{description}
-	\item[global path planning] Algoritmi che utilizzano le informazioni che si hanno sulla mappa per trovare il percorso più corto per andare dal punto di partenza all'obbiettivo.
+	\item[global path planning] Algoritmi che utilizzano le informazioni che si hanno sulla mappa per trovare il percorso più breve per andare dal punto di partenza all'obiettivo.
 	\item[local motion control] Algoritmi che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
 \end{description}
 
 La necessità degli algoritmi di local motion control nasce nel momento in cui le informazioni sulla mappa sono incomplete o possono essere soggette a cambiamenti, come avviene in ambienti dinamici con ostacoli in movimento.
-Tutti gli algoritmi di local motion control hanno quindi il fine di condurre il robot verso un obbiettivo valutando in ogni istante di tempo il percorso più sicuro.
-A differenza degli algoritmi di global path planning non hanno una parte di pre-pianificazione ma si basano soltanto sulla pianificazione online.
+Tutti gli algoritmi di local motion control hanno quindi il fine di condurre il robot verso un obiettivo valutando in ogni istante di tempo il percorso più sicuro.
+A differenza degli algoritmi di global path planning non hanno una parte di pre-pianificazione ma si basano soltanto sulla pianificazione real-time.
 
 \section{Importanza della Collision Avoidance}
 In un mondo che tende sempre di più all'automazione, il problema della Collision Avoidance diventa sempre di maggiore rilievo.
@@ -75,10 +75,10 @@ Gli utilizzi principali di questo tipo di algoritmi si possono trovare nel setto
 
 \subsection{Settore dei trasporti}
 All'interno del settore dei trasporti sono in corso numerosi studi dal punto di vista dei trasporti via terra.
-In particolare sono molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonoma.
+In particolare, sono molte le aziende automobilistiche (tra cui spiccano principalmente Tesla, Waymo e Pony.ai) che stanno investendo nello sviluppo di sistemi di guida autonoma.
 Questi sistemi devono tra le altre cose essere in grado di reagire a tutti gli imprevisti che si possono normalmente incontrare durante la guida, compresa ovviamente la presenza improvvisa di ostacoli lungo il tragitto.
 
-Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune funzioni di Collsion Avoidance sono già implementate dalla maggior parte delle case automobilistiche; tra queste funzioni troviamo\cite{fonte8}:
+Anche se le auto a guida totalmente autonoma sono ancora in fase di test, alcune funzioni di Collision Avoidance sono già realizzate dalla maggior parte delle case automobilistiche; tra queste funzioni troviamo \cite{fonte8}:
 \begin{description}
 	\item[Adaptive Cruise Control] Questo sistema usa radar e laser per adattare la velocità in modo da mantenere la giusta distanza dal veicolo che sta davanti.
 	\item[Automatic Emergency Braking (AEB)] In questo caso vengono attivati i freni per evitare una collisione o per ridurre la velocità di impatto.
@@ -101,10 +101,10 @@ Per quanto riguarda il settore industriale, sempre più aziende stanno passando 
 In fabbriche dove più robot mobili lavorano anche a contatto con gli operatori diventa essenziale che essi riconoscano la presenza di altri robot e soprattutto di umani, per garantire una maggiore sicurezza.
 In questo caso entrano in campo i sistemi di Collision Avoidance, perché anche se la mappa generale può essere ben nota, gli ostacoli possono muoversi liberamente all'interno dell'area.
 
-Ne è un esempio il sistema anticollisione SmartDect, un dispositivo sviluppato dall'azienda italiana Elettric80 che mira a ridurre notevolmente il rischio di collisioni tra Automated Guided Vehicles (AGVs) e i dipendenti\cite{fonte9}.
+Ne è un esempio il sistema anticollisione SmartDect, un dispositivo sviluppato dall'azienda italiana Elettric80 che mira a ridurre notevolmente il rischio di collisioni tra Automated Guided Vehicles (AGVs) e i dipendenti \cite{fonte9}.
 Questo sistema prevede un dispositivo indossabile con tecnologia Ultra-Wide Band (UWB) che sarà indossato dagli operatori o posizionato sui veicoli a guida manuale.
 Questo dispositivo comunica in tempo reale la sua posizione ai veicoli a guida automatica, facilitando in questo modo la prevenzione della collisione.
-Questo sistema è dotato inoltre di un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare, l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore\cite{fonte10}.
+Questo sistema è dotato inoltre di un'altra funzione: infatti nelle situazioni di rischio, oltre a rallentare, l'AGV invierà un segnale al dispositivo, il quale inizierà a vibrare o lampeggiare per avvertire l'operatore \cite{fonte10}.
 
 \begin{figure}[H]
     \centering
@@ -113,13 +113,13 @@ Questo sistema è dotato inoltre di un'altra funzione: infatti nelle situazioni 
     \label{fig:smart_dect}
 \end{figure}
 
-\section{Obbiettivo di questo progetto}
-L'obbiettivo di questo progetto è quello di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
+\section{Obiettivo di questo progetto}
+L'obiettivo di questo progetto è quello di sviluppare un sistema di Collision Avoidance basato su un laser scanner con le seguenti caratteristiche:
 \begin{description}
 	\item[Input] Il sistema prende in input lo scan del laser e un comando di velocità
 	\item[Output] Il sistema produce un comando di velocità che previene la collisione con gli oggetti rilevati nel contorno, deflettendo la traiettoria del robot verso uno spazio libero da ostacoli.
 \end{description}
-Quindi, a differenza della definizione classica del problema, nel caso analizzato non avremo un obbiettivo da raggiungere ma una velocità iniziale del robot, su cui si andrà a intervenire affinché il robot non vada a sbattere.
+Quindi, a differenza della definizione classica del problema, nel caso analizzato non avremo un obiettivo da raggiungere ma una velocità iniziale del robot, su cui si andrà a intervenire affinché il robot non vada ad urtare qualcosa.
 
 \chapter{Strumenti necessari e teoria}
 \section{ROS}
@@ -129,7 +129,7 @@ Mette infatti a disposizione strumenti e librerie utili per aiutare gli sviluppa
 
 ROS presenta inoltre alcune caratteristiche di un sistema operativo (gestione di processi, di pacchetti e delle loro dipendenze e astrazione di dispositivi hardware a basso livello) e di un middleware perché permette la comunicazione tra processi/macchine diverse.
 
-Infine costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi, tra cui C++ e Python.
+Infine, costituisce un’architettura distribuita in cui è possibile gestire in maniera asincrona un insieme di moduli software che possono essere scritti in vari linguaggi, tra cui C++ e Python.
 
 Uno dei principali punti di forza di ROS è la sua modularità, che gli permette di essere compatibile con robot che hanno caratteristiche molto diverse tra loro.
 La modularità rende inoltre più facile riutilizzare il codice e permette di integrare ROS con altri framework.
@@ -142,7 +142,7 @@ I nodi possono comunicare tra loro in due modi, tramite il meccanismo Publisher/
 ROS è strutturato intorno ad un nodo master che permette ai vari nodi di essere a conoscenza della presenza di altri nodi e di comunicare.
 Il master è un nodo unico all’interno dell’architettura di ROS e si occupa di assegnare un nome a ogni nodo connesso al sistema e di registrarlo eventualmente come Publisher, Subscriber o Service Provider.
 I vari nodi usano una libreria (ROS client library) per poter usufruire delle funzionalità di ROS, attraverso linguaggio C++ (roscpp) o Python (rospy).
-Al master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso\cite{fonte3}.
+Al nodo master viene assegnato un well-known XML-RPC URI in modo che qualsiasi nodo creato sia sempre in grado di comunicare con esso \cite{fonte3}.
 
 \subsection{Publisher/Subscriber}
 È uno dei due meccanismi usati dai vari nodi ROS per comunicare, ed è una modalità di comunicazione asincrona.
@@ -172,7 +172,7 @@ Questo package è stato utilizzato per la simulazione del robot e dell'ambiente 
 \begin{figure}[H]
     \centering
     \includegraphics[width=11cm]{stage_ros.png}
-    \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obbiettivo (il quadrato rosso).}
+    \caption{Schermata di partenza di stage\_ros, in cui si possono vedere il robot (il quadrato blu), il raggio d'azione dello scanner (l'area blu chiaro), gli ostacoli (i tratti grigi) e l'obiettivo (il quadrato rosso).}
     \label{fig:stage_ros}
 \end{figure}
 
@@ -198,13 +198,13 @@ Questo tool fornito da ROS permette di inviare dei comandi di movimento su uno s
 
 \section{Artificial Potential Field}
 \subsection{Teoria}
-Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field\cite{fonte1}.
-Quest'ultimo metodo è stato scelto per l'implementazione del progetto.
+Per quanto riguarda il local motion control, ci sono vari approcci ed algoritmi che possono essere utilizzati, come ad esempio il Vector Field Histogram, il Dynamic Window Approach e l'Artificial Potential Field \cite{fonte1}.
+Quest'ultimo metodo è stato scelto per la realizzazione del progetto.
 
-Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obbiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
+Il metodo dell'Artificial Potential Field si basa sulla seguente idea: l'obiettivo del robot si comporta come una forza attrattiva, mentre gli ostacoli si comportano come forze repulsive.
 Il potenziale totale $U$ sarà la somma delle varie forze attrattive e repulsive e il gradiente negativo $-\nabla U(q)$ indicherà la traiettoria più sicura.
 
-Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obbiettivo $\boldsymbol{q}_{g}$: conico quando il robot è lontano, paraboidale quando è vicino.
+Per quanto riguarda le forze attrattive si combinano due profili di attrazione in base alla distanza del robot dall'obiettivo $\boldsymbol{q}_{g}$: conico quando il robot è lontano, paraboidale quando è vicino.
 In questo modo la formula per il calcolo della campo attrattivo diventa:
 \newline
 $$
@@ -258,7 +258,7 @@ v=f_{t, x} \cos \theta+f_{t, y} \sin \theta \\
 \omega=f_{t, \theta}
 \end{array}
 $$
-dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento\cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo\cite{fonte2}:
+dove $\theta$ è l'angolo formato tra l'asse sagittale del robot e l'asse x del sistema di riferimento \cite{fonte4}, mentre $f_{t, \theta}$ può essere calcolato nel seguente modo \cite{fonte2}:
 
 $$
 f_{t, \theta}=k_{\theta}\left(\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)-\theta\right)
@@ -266,7 +266,7 @@ $$
 
 \chapter{Descrizione del progetto}
 \section{Sistema di riferimento}
-Data la semplicità del caso in esame è stato possibile scegliere come sistema di riferimento il sistema di riferimento mobile del robot.
+Poiché nel caso in esame è presente un solo robot mobile e gli ostacoli sono tutti fissi, è stato possibile scegliere come sistema di riferimento il sistema di riferimento mobile del robot.
 Questo ha portato a una semplificazione delle formule.
 Infatti in questo modo la posizione del robot è sempre $\left(x, y\right)=(0,0)$, mentre l'angolo $\theta$ definito nel capitolo precedente è sempre 0.
 
@@ -277,7 +277,7 @@ v=\left\|\left(f_{t, x}, f_{t, y}\right)\right\| \\
 \omega=\operatorname{atan} 2\left(f_{t, y}, f_{t, x}\right)
 \end{array}
 $$
-Infatti tramite $\omega$ facciamo ruotare il robot nella direzione della forza risultante, e poi lo facciamo muovere linearmente impostando $v$ uguale al modulo della forza.
+Infatti, tramite $\omega$ facciamo ruotare il robot nella direzione della forza risultante, e poi lo facciamo muovere linearmente impostando $v$ uguale al modulo della forza.
 
 \section{Nodi}
 Per questo progetto sono stati sviluppati tre nodi ROS:
@@ -464,7 +464,7 @@ def force_service(self, request):
     return self.force
 \end{lstlisting}
 
-Ogni volta che lo scanner inserirà una nuova rilevazione sotto froma di messaggio nel topic \textbf{base\_scan}, verrà quindi chiamata la callback, che filtrerà i dati rilevati in base a un parametro di soglia (in questo caso \lstinline{1.25}), ne calcolerà l'equivalente forza repulsiva e infine invocherà per ogni valore calcolato la funzione \textbf{set\_net\_force}:
+Ogni volta che lo scanner inserirà una nuova rilevazione sotto forma di messaggio nel topic \textbf{base\_scan}, verrà quindi chiamata la callback, che filtrerà i dati rilevati in base a un parametro di soglia (in questo caso \lstinline{1.25}), ne calcolerà l'equivalente forza repulsiva e infine invocherà per ogni valore calcolato la funzione \textbf{set\_net\_force}:
 
 \begin{lstlisting}
 def callback(self, msg):
@@ -605,7 +605,7 @@ def callback(self, msg):
 
 \section{Messaggi}
 \subsection{geometry\_msgs/Twist.msg}
-La definizione del tipo Twist.msg è presente nella libreria fornita da ROS, ed è la seguente\cite{fonte5}:
+La definizione del tipo Twist.msg è presente nella libreria fornita da ROS, ed è la seguente \cite{fonte5}:
 \begin{lstlisting}
 # This expresses velocity in free space broken into its linear and angular parts.
 
@@ -613,10 +613,10 @@ Vector3  linear
 Vector3  angular
 \end{lstlisting}
 I messaggi di tipo Twist sono quelli che sono usati sui topic \textbf{cmd\_vel\_input} e \textbf{cmd\_vel}.
-Ogni variabile di tipo Vector3 è composta da 3 componenti, che in questo caso corrispondo alle componenti  $(x, y, z)$ delle velocità lineare e angolare.
+Ogni variabile di tipo Vector3 è composta da 3 componenti, che in questo caso corrispondono alle componenti  $(x, y, z)$ delle velocità lineare e angolare.
 
 \subsection{sensor\_msgs/LaserScan.msg}
-Anche per quanto riguarda i messaggi inviati sul topic \textbf{base\_scan} è stato usato un messaggio definito nella libreria ROS\cite{fonte6}:
+Anche per quanto riguarda i messaggi inviati sul topic \textbf{base\_scan} è stato usato un messaggio definito nella libreria ROS \cite{fonte6}:
 \begin{lstlisting}
 # Single scan from a planar laser range-finder
 
@@ -637,7 +637,7 @@ float32[] intensities    # intensity data [device-specific units].
 \end{lstlisting}
 
 \subsection{visualization\_msgs/Marker.msg}
-I messaggi di tipo Marker sono tra i più utilizzati per visualizzare informazioni su RVIZ, e sono definiti nel seguente modo\cite{fonte7}:
+I messaggi di tipo Marker sono tra i più utilizzati per visualizzare informazioni su RVIZ, e sono definiti nel seguente modo \cite{fonte7}:
 \begin{lstlisting}
 uint8 ARROW=0
 uint8 CUBE=1
@@ -691,7 +691,7 @@ float64 angle
 \end{lstlisting}
 
 Come spiegato precedentemente, le due parti del file .srv separate dai caratteri "\lstinline{---}" corrispondono rispettivamente alla Request e alla Response del servizio.
-Infatti in questo caso specifico \textbf{force\_service} non prende nessun parametro di input e restituisce un oggtto con due proprietà: il modulo della forza e l'angolo che essa forma con il robot.
+Infatti, in questo caso specifico \textbf{force\_service} non prende nessun parametro di input e restituisce un oggetto con due proprietà: il modulo della forza e l'angolo che essa forma con il robot.
 
 \chapter{Esecuzione e test dell'algoritmo}
 \section{Descrizione dell'esecuzione}
@@ -724,7 +724,7 @@ In questo modo è quindi possibile visualizzare su RVIZ la forza calcolata in og
 \begin{figure}[htp]
     \centering
     \includegraphics[width=13.5cm]{rviz_force5.png}
-    \caption{Infine, il robot si trova nuovamente in una zona in il rischio di collisioni è minimo.}
+    \caption{Infine, il robot si trova nuovamente in una zona in cui il rischio di collisioni è minimo.}
     \label{fig:rviz_force5}
 \end{figure}
 
@@ -735,9 +735,9 @@ Durante la fase di test è stato necessario valutare i seguenti parametri:
     \item[Coefficiente velocità angolare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità angolare del robot.
     \item[Coefficiente velocità lineare] Questo parametro serve ad attenuare gli effetti della forza sulla velocità lineare del robot.
 \end{description}
-Dopo aver svolto alcune osservazioni si è giunti a una conclusione.
+Dopo aver svolto alcune osservazioni si è giunti ad una conclusione.
 
-Per quanto riguarda il primo parametro, è stato scelto $1.25$ come distanza di soglia; infatti è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano la libertà di manovra del robot, portandolo a volte a rimanere bloccato in un loop.
+Per quanto riguarda il primo parametro, è stato scelto $1.25$ come distanza di soglia; infatti, è stato osservato che valori più bassi causano collisioni in alcune situazioni, mentre valori troppo alti limitano la libertà di manovra del robot, portandolo a volte a rimanere bloccato in un loop.
 
 Per quanto riguarda il secondo ed il terzo parametro non è stato possibile trovare una combinazione di valori adeguata in quanto si è notato che valori troppo alti della velocità lineare di output potevano sempre portare a delle collisioni.
 Si è optato quindi per limitare la velocità lineare di output a valori inferiori a $0.75$, scelta che rende quasi nulla la possibilità di collisione.
