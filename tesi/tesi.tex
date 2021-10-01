@@ -59,7 +59,7 @@ In particolare, è stato scelto il metodo dell'Artificial Potential Field, che �
 
 \chapter{Introduzione}
 \section{Formulazione problema}
-Lo sviluppo di algoritmi di navigazione autonoma per robot mobili deve affrontare due problematichee quindi si suddivide in due parti \cite{fonte1}:
+Lo sviluppo di algoritmi di navigazione autonoma per robot mobili deve affrontare due problematiche quindi si suddivide in due parti \cite{fonte1}:
 \begin{description}
 	\item[global path planning] Algoritmi che utilizzano le informazioni che si hanno sulla mappa per trovare il percorso più breve per andare dal punto di partenza all'obiettivo.
 	\item[local motion control] Algoritmi che permettono al robot di calcolare in tempo reale una traiettoria in grado di evitare gli ostacoli incontrati durante la navigazione.
@@ -236,7 +236,7 @@ $$
 \eta_{i}(\boldsymbol{q})=\min _{\boldsymbol{q}^{\prime} \in \mathcal{C O}_{i}}\left\|\boldsymbol{q}-\boldsymbol{q}^{\prime}\right\|
 $$
 \newline
-dove $\mathcal{C O}_{i}$ è la obstacole region.
+dove $\mathcal{C O}_{i}$ è la obstacle region.
 
 Otteniamo così una somma dei campi totali:
 $$
@@ -283,8 +283,8 @@ Infatti, tramite $\omega$ facciamo ruotare il robot nella direzione della forza 
 Per questo progetto sono stati sviluppati tre nodi ROS:
 \begin{description}
 	\item[twist\_gnerator] Questo nodo si occupa di simulare una serie di comandi di velocità in input.
-	\item[obstacole\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati su tali informazioni, per poi fornirli tramite un servizio.
-	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacole\_detection.
+	\item[obstacle\_detection] Questo nodo si occupa di analizzare le informazioni provenienti dallo scanner e memorizzare i calcoli effettuati su tali informazioni, per poi fornirli tramite un servizio.
+	\item[cmd\_vel\_controller] Questo nodo si occupa di intercettare i comandi di velocità in input e calcolare la nuova traiettoria basandosi sulle informazioni ricevute da obstacle\_detection.
 \end{description}
 
 \subsection{twist\_generator}
@@ -451,7 +451,7 @@ Questo nodo dovrà inoltre registrarsi come Publisher sul topic \textbf{marker},
     self.pub = rospy.Publisher('marker', Marker, queue_size=10)
 \end{lstlisting}
 
-Dovrà infine reigstrarsi come provider del servizio \textbf{force\_service} e inizializzare la variabile \textbf{force}.
+Dovrà infine registrarsi come provider del servizio \textbf{force\_service} e inizializzare la variabile \textbf{force}.
 La forza risultante agente sul robot viene infatti calcolata da questo nodo, salvata nella variabile \textbf{force} e poi fornita a qualunque nodo la richieda:
 
 \begin{lstlisting}
